@@ -1,0 +1,19 @@
+.popup__close-button {
+    position: absolute;
+    top: -47px;
+    right: -47px;
+    background-image: url(../../../images/close-icon.svg);
+    color: #ffffff;
+    width: 56px;
+    height: 56px;
+    border: none;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: -1;
+    cursor: pointer;
+}
+
+
+.popup__close-button:focus {
+    outline: none;
+}
