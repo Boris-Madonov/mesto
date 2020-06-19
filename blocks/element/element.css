@@ -5,7 +5,7 @@
 .element {
     display: grid;
     grid-template-columns: minmax(209px, auto) 43px;
-    grid-template-rows: minmax(282px, auto) 79px;
+    grid-template-rows: 282px 79px;
     grid-column-gap: 30px;
     background-color: #ffffff;
     border-radius: 10px;
