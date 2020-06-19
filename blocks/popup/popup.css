@@ -6,7 +6,7 @@
 @import url(./__submit-button/popup__submit-button.css);
 
 .popup {
-    /*display: none;*/
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
