@@ -13,3 +13,9 @@
     display: flex;
     flex-direction: column;
 }
+
+@media screen and (max-width: 619px) {
+    .popup__container {
+        width: 300px;
+    }
+}

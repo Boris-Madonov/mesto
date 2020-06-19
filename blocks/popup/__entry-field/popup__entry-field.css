@@ -12,3 +12,9 @@
 .popup__entry-field:last-of-type {
     margin: 0 auto 0;
 }
+
+@media screen and (max-width: 619px) {
+    .popup__entry-field {
+        width: 228px;
+    }
+}
