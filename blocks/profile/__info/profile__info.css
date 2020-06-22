@@ -1,13 +1,11 @@
-@import url(./__avatar/profile-info__avatar.css);
-
-.profile-info {
+.profile__info {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
 @media screen and (max-width: 619px) {
-    .profile-info {
+    .profile__info {
         flex-direction: column;
     }
 }

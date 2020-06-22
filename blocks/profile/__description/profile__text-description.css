@@ -1,4 +1,4 @@
-.profile-text__description {
+.profile__text-description {
     font-size: 18px;
     line-height: 22px;
     font-weight: normal;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 619px) {
-    .profile-text__description {
+    .profile__text-description {
         font-size: 14px;
         line-height: 17px;
         grid-column-start: 1;

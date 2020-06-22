@@ -1,4 +1,4 @@
-.profile-text__edit {
+.profile__text-edit {
     margin: 0 0 12px 0;
     padding: 0;
     background-image: url(../../../images/edit-button.svg);
@@ -11,12 +11,12 @@
     background-size: contain;
 }
 
-.profile-text__edit:hover {
+.profile__text-edit:hover {
     opacity: .6;
 }
 
 @media screen and (max-width: 619px) {
-    .profile-text__edit {
+    .profile__text-edit {
         width: 18px;
         height: 18px;
         align-self: center;
