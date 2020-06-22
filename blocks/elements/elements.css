@@ -1,11 +1,8 @@
+@import url(./__list/elements__list.css);
+
 .elements {
     max-width: 882px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-    grid-column-gap: 18px;
-    grid-row-gap: 20px;
-    justify-content: center;
 }
 
 @media screen and (max-width: 881px) {
