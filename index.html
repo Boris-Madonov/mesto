@@ -28,18 +28,6 @@
                 <button class="profile__add-button"></button>
             </section>
 
-            <section class="popup">
-                <form class="popup__container">
-                    <button class="popup__close-button" type="button"></button>
-                    <p class="popup__container-name">Редактировать профиль</p>
-                    <fieldset class="popup__container-form">
-                        <input class="popup__entry-field popup__entry-field_account-name" type="text" name="account-name" placeholder="Введите имя">
-                        <input class="popup__entry-field popup__entry-field_account-description" type="text" name="account-description" placeholder="Введите описание">
-                        <button class="popup__submit-button" type="submit" >Сохранить</button>
-                    </fieldset>
-                </form>
-            </section>
-
             <section class="elements">
                 <ul class="elements__list">
                     <li class="element">
@@ -73,6 +61,18 @@
                         <button class="element__like" type="button"></button>
                     </li>
                 </ul>
+            </section>
+
+            <section class="popup">
+                <form class="popup__container" name="edit-profile-form" action="#" method="GET">
+                    <button class="popup__close-button" type="button"></button>
+                    <p class="popup__container-name">Редактировать профиль</p>
+                    <fieldset class="popup__container-form">
+                        <input class="popup__entry-field popup__entry-field_account-name" type="text" name="account-name" placeholder="Введите имя">
+                        <input class="popup__entry-field popup__entry-field_account-description" type="text" name="account-description" placeholder="Введите описание">
+                        <button class="popup__submit-button" type="submit" >Сохранить</button>
+                    </fieldset>
+                </form>
             </section>
 
         </main>
