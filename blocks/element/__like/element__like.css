@@ -7,4 +7,9 @@
     cursor: pointer;
     width: 20.76px;
     height: 18.13px;
+    transition: opacity 1s ease-out;
+}
+
+.element__like:hover {
+    opacity: .6;
 }

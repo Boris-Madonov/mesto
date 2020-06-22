@@ -9,6 +9,7 @@
     cursor: pointer;
     align-self: end;
     background-size: contain;
+    transition: opacity 1s ease-out;
 }
 
 .profile__text-edit:hover {

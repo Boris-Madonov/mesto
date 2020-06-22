@@ -11,8 +11,12 @@
     background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     background-position: center;
+    transition: opacity 1s ease-out;
 }
 
+.popup__close-button:hover {
+    opacity: .6;
+}
 
 .popup__close-button:focus {
     outline: none;
