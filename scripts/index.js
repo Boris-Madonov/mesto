@@ -21,18 +21,12 @@ function popupOpen () {
     inputDescription.value = profileDescription.textContent;
 };
 
-// открываем секцию popup при нажатии кнопки
-editProfileTextButton.addEventListener('click', popupOpen);
-
 // функция для закрятия секции popup
 function popupClose () {
 
     // удаляем модификатор для открытия секции popup
     popup.classList.remove('popup_opened');
 };
-
-// закрываем секцию popup при нажатии кнопки
-closePopupButton.addEventListener('click', popupClose);
 
 // функция для переноса нового текста, при внесении изменений в текстовые поля в секции popup
 function formSubmitHandler (evt) {
@@ -47,6 +41,12 @@ function formSubmitHandler (evt) {
     // при выполнении даннйо функции секция popup должна закрываться
     popupClose ();
 };
+
+// открываем секцию popup при нажатии кнопки
+editProfileTextButton.addEventListener('click', popupOpen);
+
+// закрываем секцию popup при нажатии кнопки
+closePopupButton.addEventListener('click', popupClose);
 
 // заменяем текст и закрываем секцию popup при нажатии кнопки
 formElement.addEventListener('submit', formSubmitHandler);
