@@ -1,0 +1,22 @@
+.element__remove {
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    background-image: url(../../../images/trash.svg);
+    border: none;
+    cursor: pointer;
+    transition: opacity 1s ease-out;
+    width: 18px;
+    height: 19.3px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.element__remove:hover {
+    opacity: .6;
+}
+
+.element__remove:focus {
+    outline: none;
+}

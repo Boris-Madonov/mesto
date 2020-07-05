@@ -1,6 +1,7 @@
 @import url(./__image/element__image.css);
 @import url(./__description/element__description.css);
 @import url(./__like/element__like.css);
+@import url(./__remove/element__remove.css);
 
 .element {
     display: grid;
@@ -11,4 +12,5 @@
     border-radius: 10px;
     overflow: hidden;
     list-style: none;
+    position: relative;
 }

@@ -16,6 +16,10 @@
     opacity: .6;
 }
 
+.profile__text-edit:focus {
+    outline: none;
+}
+
 @media screen and (max-width: 619px) {
     .profile__text-edit {
         width: 18px;
