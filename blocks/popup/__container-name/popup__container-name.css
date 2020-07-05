@@ -3,5 +3,19 @@
     line-height: 29px;
     font-weight: 900;
     color: #000000;
-    margin: 34px 64px 48px 36px;
+    position: absolute;
+    top: 34px;
+    left: 36px;
+    margin: 0;
+    max-width: 330px;
+}
+
+@media screen and (max-width: 619px) {
+    .popup__container-name {
+        font-size: 18px;
+        line-height: 22px;
+        top: 30px;
+        left: 20px;
+        max-width: 185px;
+    }
 }

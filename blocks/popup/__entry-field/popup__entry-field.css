@@ -1,11 +1,12 @@
 .popup__entry-field {
-    margin: 0 auto 30px;
+    margin: 108px auto 30px;
     padding: 0;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     width: 358px;
+    height: 28px;
     font-size: 14px;
-    line-height: 30px;
+    line-height: 17px;
     font-weight: normal;
 }
 
@@ -15,6 +16,10 @@
 
 @media screen and (max-width: 619px) {
     .popup__entry-field {
-        width: 228px;
+        width: 200px;
+        font-size: 12px;
+        line-height: 15px;
+        margin: 82px auto 20px;
+        height: 24px;
     }
 }
