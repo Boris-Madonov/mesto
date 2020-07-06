@@ -21,6 +21,9 @@ const closePopupProfileButton = popupProfile.querySelector('.popup__close-button
 const closePopupNewItemButton = popupNewItem.querySelector('.popup__close-button'); // кнопка закрытия попапа новая карточка
 const closePopupImageButton = content.querySelector('.popup__close-button'); // кнопка закрытия попапа картинки
 
+const itemsList = content.querySelector('.elements__list'); // список карточек
+const removeItemButton = itemsList.querySelectorAll('.element__remove'); // кнопка удаления карточки
+
 
 // отсюда идет правильный код
 
@@ -32,7 +35,7 @@ const formSubmitHandler = function (evt) { // функция для перено
     evt.preventDefault(); // отменяем стандартную отправку формы, теперь можем определить свою логику отправки формы
     profileName.textContent = inputName.value;  // вставляем в текстовые поля измененный текст в секции popup
     profileDescription.textContent = inputDescription.value;
-    popupToggle(popupProfile);
+    popupToggle(popupProfile); // закрываем попап
 };
 
 openPopupProfileButton.addEventListener('click', function () { // открываем секцию popup при нажатии кнопки
@@ -55,6 +58,17 @@ closePopupNewItemButton.addEventListener('click', function () {
     popupToggle(popupNewItem);
 });
 
+removeItemButton.forEach(function (item) {  // выбираем все кнопки удаления карточек
+    item.addEventListener('click', function () { // добавляем срабатывание при нажатии кнопки
+        const element = item.closest('.element'); // выбираем именно ту карточку, кнопка которой нажата
+        element.remove(); // удаляем карточку по нажатию кнопки
+    });
+})
+
+
+
+
+
 
 // ниже идет черновик
 
@@ -70,17 +84,13 @@ buttonSavePopup.addEventListener('click', formSubmitHandler);
 
 
 
-
-
-
-// создаем функционал удаления карточки по нажатию кнопки
-const itemsList = content.querySelector('.elements__list'); // связываем секцию с карточками
-const removeItemButton = itemsList.querySelectorAll('.element__remove'); // выбираем кнопку удаления карточки
-
 removeItemButton.addEventListener('click', function () {
     const item = removeItemButton.closest('.element');
     item.remove();
-  });
+});
+
+
+
 
 // создаем функционал добавления новой карточки
 const inputItemName = popup.querySelector('.popup__entry-field_item-name');
