@@ -24,23 +24,24 @@ const closePopupImageButton = content.querySelector('.popup__close-button'); // 
 const itemsList = content.querySelector('.elements__list'); // список карточек
 const removeItemButton = itemsList.querySelectorAll('.element__remove'); // кнопка удаления карточки
 
+const itemLikeButton = itemsList.querySelectorAll('.element__like'); // кнопка лайка карточки
 
 // отсюда идет правильный код
 
-function popupToggle (popup) { // функция для открытия и закрытия попапа
-    popup.classList.toggle('popup_opened'); // добавляем/удаляем модификатор для открытия/закрытия попапа
+function popupToggle (popup) {                  // функция для открытия и закрытия попапа
+    popup.classList.toggle('popup_opened');     // добавляем/удаляем модификатор для открытия/закрытия попапа
 };
 
-const formSubmitHandler = function (evt) { // функция для переноса нового текста, при внесении изменений в текстовые поля в попапа
-    evt.preventDefault(); // отменяем стандартную отправку формы, теперь можем определить свою логику отправки формы
-    profileName.textContent = inputName.value;  // вставляем в текстовые поля измененный текст в секции popup
+const formSubmitHandler = function (evt) {                      // функция для переноса нового текста, при внесении изменений в текстовые поля в попапа
+    evt.preventDefault();                                       // отменяем стандартную отправку формы, теперь можем определить свою логику отправки формы
+    profileName.textContent = inputName.value;                  // вставляем в текстовые поля измененный текст в секции popup
     profileDescription.textContent = inputDescription.value;
-    popupToggle(popupProfile); // закрываем попап
+    popupToggle(popupProfile);                                  // закрываем попап
 };
 
-openPopupProfileButton.addEventListener('click', function () { // открываем секцию popup при нажатии кнопки
+openPopupProfileButton.addEventListener('click', function () {  // открываем секцию popup при нажатии кнопки
     popupToggle(popupProfile);
-    inputName.value = profileName.textContent; // при открытии секции popup в поля ввода переносится текущий текст
+    inputName.value = profileName.textContent;                  // при открытии секции popup в поля ввода переносится текущий текст
     inputDescription.value = profileDescription.textContent;
 });
 
@@ -48,7 +49,7 @@ openPopupNewItemButton.addEventListener('click', function () {
     popupToggle(popupNewItem);
 });
 
-formElement.addEventListener('submit', formSubmitHandler);  // заменяем текст и закрываем секцию popup при нажатии кнопки
+formElement.addEventListener('submit', formSubmitHandler);      // заменяем текст и закрываем секцию popup при нажатии кнопки
 
 closePopupProfileButton.addEventListener('click', function () { // закрываем секцию popup при нажатии кнопки
     popupToggle(popupProfile);
@@ -58,15 +59,26 @@ closePopupNewItemButton.addEventListener('click', function () {
     popupToggle(popupNewItem);
 });
 
-removeItemButton.forEach(function (item) {  // выбираем все кнопки удаления карточек
-    item.addEventListener('click', function () { // добавляем срабатывание при нажатии кнопки
-        const element = item.closest('.element'); // выбираем именно ту карточку, кнопка которой нажата
-        element.remove(); // удаляем карточку по нажатию кнопки
+removeItemButton.forEach(function (item) {              // выбираем все кнопки удаления карточек
+    item.addEventListener('click', function () {        // добавляем срабатывание при нажатии кнопки
+        const element = item.closest('.element');       // выбираем именно ту карточку, кнопка которой нажата
+        element.remove();                               // удаляем карточку по нажатию кнопки
     });
 })
 
+itemLikeButton.forEach(function (itemLike) {                // выбираем все кнопки лайков карточек
+    itemLike.addEventListener('click', function (event) {   // добавляем срабатывание при нажатии кнопки
+        const like = event.target;                          // выбираем кнопку по событию нажатия
+        like.classList.toggle('element__like_liked');       // добавляем/удаляем модификатор при событии нажатии кнопки                  
+    });
+})
 
-
+/*
+itemLikeButton.addEventListener('click', function(evt) {
+    const like = evt.target('.element__like_liked');
+    like.classList.toggle();
+})
+*/
 
 
 
