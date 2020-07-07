@@ -132,4 +132,4 @@ function newCardFormSubmitHandler (evt) {           // функция добав
 
 formPopupNewCard.addEventListener('submit', newCardFormSubmitHandler);  // создаем новую карточку
 
-initialCards.forEach(card => addCard(card));        // рендеринг карточек
+initialCards.forEach(card => addCard(card));        // рендер карточек
