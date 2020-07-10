@@ -94,7 +94,16 @@ function likeCard(evt) {                            // функция добав
     like.classList.toggle('element__like_liked');
 }
 
-function addCard(item) {                                               // функция создания новой карточки с функциональностями
+function openPopupImage(cardImage, cardName) {                                // функция открытия попапа с картинкой по нажатию на нее
+    const image = content.querySelector('.popup__item-image');
+    const name = content.querySelector('.popup__item-name');
+    image.src = cardImage.src;
+    image.alt = cardImage.alt;
+    name.textContent = cardName.textContent;
+    togglePopup(popupImage);
+}
+
+function addCard(item) {                                               // функция создания новой карточки
     const card = cardTemplate.content.cloneNode(true);
     const buttonRemoveCard = card.querySelector('.element__remove');
     const buttonCardLike = card.querySelector('.element__like');
@@ -105,12 +114,7 @@ function addCard(item) {                                               // фун
     cardImage.src = item.link;
     buttonRemoveCard.addEventListener('click', removeCard);
     buttonCardLike.addEventListener('click', likeCard);
-    cardImage.addEventListener('click', function() {                                // функция открытия попапа с картинкой по нажатию на нее
-        content.querySelector('.popup__item-image').src = cardImage.src;            // комментарий для ревью - очень долго бился над тем чтобы вынести эту функцию из слушателя, пока не вышло!
-        content.querySelector('.popup__item-image').alt = cardImage.alt;
-        content.querySelector('.popup__item-name').textContent = cardName.textContent;
-        togglePopup(popupImage);
-    })
+    cardImage.addEventListener('click',  () => openPopupImage(cardImage, cardName));
     return card;
 }
 
@@ -129,3 +133,17 @@ formPopupNewCard.addEventListener('submit', handlerSubmitFormNewCard);  // со�
 initialCards.forEach(function(card) {           // рендер карточек
     cardList.prepend(addCard(card));
 });
+
+
+/*
+
+cardImage.addEventListener('click', function() {                                // функция открытия попапа с картинкой по нажатию на нее
+        const image = content.querySelector('.popup__item-image');
+        const name = content.querySelector('.popup__item-name');
+        image.src = cardImage.src;                                  // комментарий для ревью - очень долго бился над тем чтобы вынести эту функцию из слушателя, пока не вышло!
+        image.alt = cardImage.alt;
+        name.textContent = cardName.textContent;
+        togglePopup(popupImage);
+    })
+
+*/
