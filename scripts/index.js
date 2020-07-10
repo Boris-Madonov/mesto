@@ -133,17 +133,3 @@ formPopupNewCard.addEventListener('submit', handlerSubmitFormNewCard);  // со�
 initialCards.forEach(function(card) {           // рендер карточек
     cardList.prepend(addCard(card));
 });
-
-
-/*
-
-cardImage.addEventListener('click', function() {                                // функция открытия попапа с картинкой по нажатию на нее
-        const image = content.querySelector('.popup__item-image');
-        const name = content.querySelector('.popup__item-name');
-        image.src = cardImage.src;                                  // комментарий для ревью - очень долго бился над тем чтобы вынести эту функцию из слушателя, пока не вышло!
-        image.alt = cardImage.alt;
-        name.textContent = cardName.textContent;
-        togglePopup(popupImage);
-    })
-
-*/
