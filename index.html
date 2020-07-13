@@ -44,24 +44,29 @@
             </template>
 
             <section class="popup popup__edit-profile">
-                <form class="popup__container" name="edit-profile-form" action="#" method="GET">
+                <form class="popup__container" name="edit-profile-form" action="#" method="GET" novalidate>
                     <button class="popup__close-button" type="button"></button>
                     <p class="popup__container-name">Редактировать профиль</p>
                     <fieldset class="popup__container-form">
-                        <input class="popup__entry-field popup__entry-field_account-name" type="text" name="account-name" placeholder="Введите имя">
-                        <input class="popup__entry-field popup__entry-field_account-description" type="text" name="account-description" placeholder="Введите описание">
+                        <label class="popup__form-field">
+                            <input class="popup__entry-field popup__entry-field_account-name" id="entry-field-account-name" type="text" name="account-name" placeholder="Введите имя" minlength="2" maxlength="40" required>
+                            <span class="popup__entry-field-error" id="entry-field-account-name-error"></span>
+                        </label>
+                        <label class="popup__form-field">
+                            <input class="popup__entry-field popup__entry-field_account-description" type="text" name="account-description" placeholder="Введите описание" minlength="2" maxlength="200" required>
+                        </label>
                         <button class="popup__submit-button" type="submit" >Сохранить</button>
                     </fieldset>
                 </form>
             </section>
 
             <section class="popup popup__new-item">
-                <form class="popup__container" name="new-item-form" action="#" method="GET">
+                <form class="popup__container" name="new-item-form" action="#" method="GET" novalidate>
                     <button class="popup__close-button" type="button"></button>
                     <p class="popup__container-name">Новое место</p>
                     <fieldset class="popup__container-form">
-                        <input class="popup__entry-field popup__entry-field_item-name" type="text" name="item-name" placeholder="Название">
-                        <input class="popup__entry-field popup__entry-field_item-image-url" type="text" name="item-image-url" placeholder="Ссылка на картинку">
+                        <input class="popup__entry-field popup__entry-field_item-name" type="text" name="item-name" placeholder="Название" minlength="1" maxlength="30" required>
+                        <input class="popup__entry-field popup__entry-field_item-image-url" type="url" name="item-image-url" placeholder="Ссылка на картинку"required>
                         <button class="popup__submit-button" type="submit">Создать</button>
                     </fieldset>
                 </form>
@@ -82,6 +87,7 @@
         </footer>
 
     </div>
+    <!-- <script src="./scripts/validate.js"></script> -->
     <script src="./scripts/index.js"></script>
 </body>
 </html>

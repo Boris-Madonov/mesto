@@ -34,13 +34,13 @@ const popupProfile = content.querySelector('.popup__edit-profile'); // попа�
 const popupNewCard = content.querySelector('.popup__new-item'); // попап с добавлением новой карточки
 const popupImage = content.querySelector('.popup__image') // попап с открытие картинки
 
-const inputName = popupProfile.querySelector('.popup__entry-field_account-name'); // поле ввода имени в профайле
-const inputDescription = popupProfile.querySelector('.popup__entry-field_account-description'); // поле ввода описания в профайле
-const profileName = content.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
-const profileDescription = content.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
-
 const formPopupProfile = popupProfile.querySelector('.popup__container'); // форма в HTML в профайле
 const formPopupNewCard = popupNewCard.querySelector('.popup__container'); // форма в HTML в новой карточке
+
+const inputProfileName = formPopupProfile.querySelector('.popup__entry-field_account-name'); // поле ввода имени в профайле
+const inputProfileDescription = formPopupProfile.querySelector('.popup__entry-field_account-description'); // поле ввода описания в профайле
+const profileName = content.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
+const profileDescription = content.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
 
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
@@ -60,15 +60,15 @@ function togglePopup(popup) {                  // функция для откр
 
 function handlerSubmitFormProfile(evt) {                       // функция для переноса нового текста, при внесении изменений в текстовые поля в попапа
     evt.preventDefault();                                       // отменяем стандартную отправку формы, теперь можем определить свою логику отправки формы
-    profileName.textContent = inputName.value;                  // вставляем в текстовые поля измененный текст в секции popup
-    profileDescription.textContent = inputDescription.value;
+    profileName.textContent = inputProfileName.value;                  // вставляем в текстовые поля измененный текст в секции popup
+    profileDescription.textContent = inputProfileDescription.value;
     togglePopup(popupProfile);                                  // закрываем попап
 }
 
 buttonOpenPopupProfile.addEventListener('click', function () {  // открываем секцию popup при нажатии кнопки
     togglePopup(popupProfile);
-    inputName.value = profileName.textContent;                  // при открытии секции popup в поля ввода переносится текущий текст
-    inputDescription.value = profileDescription.textContent;
+    inputProfileName.value = profileName.textContent;                  // при открытии секции popup в поля ввода переносится текущий текст
+    inputProfileDescription.value = profileDescription.textContent;
 })
 
 buttonOpenPopupNewCard.addEventListener('click', function () {  // открываем секцию popup при нажатии кнопки
@@ -133,3 +133,34 @@ formPopupNewCard.addEventListener('submit', handlerSubmitFormNewCard);  // со�
 initialCards.forEach(function(card) {           // рендер карточек
     cardList.prepend(addCard(card));
 });
+
+
+// дальше код валидации полей форм
+
+const formError = formPopupProfile.querySelector(`#${inputProfileName.id}-error`);
+
+
+const showInputError = (element, errorMessage) =>{
+    element.classList.add('popup__entry-field_type_error');
+    formError.textContent = errorMessage;
+    formError.classList.add('popup__entry-field-error_active');
+};
+
+const hideInputError = (element) => {
+    element.classList.remove('popup__entry-field_type_error');
+    formError.classList.remove('popup__entry-field-error_active');
+    formError.textContent = '';
+};
+
+
+
+
+const isValid = () => {
+    if (!inputProfileName.validity.valid) {
+        showInputError(inputProfileName, inputProfileName.validationMessage);
+    } else {
+        hideInputError(inputProfileName, inputProfileName.validationMessage);
+    }
+};
+
+inputProfileName.addEventListener('input', isValid);

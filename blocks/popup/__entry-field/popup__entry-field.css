@@ -1,25 +1,19 @@
 .popup__entry-field {
-    margin: 108px auto 30px;
+    margin: 0;
     padding: 0;
+    width: 100%;
+    height: 28px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    width: 358px;
-    height: 28px;
     font-size: 14px;
     line-height: 17px;
     font-weight: normal;
 }
 
-.popup__entry-field:last-of-type {
-    margin: 0 auto 0;
-}
-
 @media screen and (max-width: 619px) {
     .popup__entry-field {
-        width: 200px;
         font-size: 12px;
         line-height: 15px;
-        margin: 82px auto 20px;
         height: 24px;
     }
 }

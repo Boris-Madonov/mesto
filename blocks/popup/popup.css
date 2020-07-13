@@ -5,7 +5,11 @@
 @import url(./__close-button/popup__close-button.css);
 @import url(./__container-name/popup__container-name.css);
 @import url(./__container-form/popup__container-form.css);
+@import url(./__form-field/popup__form-field.css);
+@import url(./__entry-field-error/_active/popup__entry-field-error_active.css);
+@import url(./__entry-field-error/popup__entry-field-error.css);
 @import url(./__entry-field/popup__entry-field.css);
+@import url(./__entry-field/_type/popup__entry-field_type_error.css);
 @import url(./__submit-button/popup__submit-button.css);
 
 .popup {
