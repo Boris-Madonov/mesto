@@ -53,7 +53,8 @@
                             <span class="popup__entry-field-error" id="entry-field-account-name-error"></span>
                         </label>
                         <label class="popup__form-field">
-                            <input class="popup__entry-field popup__entry-field_account-description" type="text" name="account-description" placeholder="Введите описание" minlength="2" maxlength="200" required>
+                            <input class="popup__entry-field popup__entry-field_account-description" id="entry-field-account-description" type="text" name="account-description" placeholder="Введите описание" minlength="2" maxlength="200" required>
+                            <span class="popup__entry-field-error" id="entry-field-account-description-error"></span>
                         </label>
                         <button class="popup__submit-button" type="submit" >Сохранить</button>
                     </fieldset>
@@ -65,8 +66,14 @@
                     <button class="popup__close-button" type="button"></button>
                     <p class="popup__container-name">Новое место</p>
                     <fieldset class="popup__container-form">
-                        <input class="popup__entry-field popup__entry-field_item-name" type="text" name="item-name" placeholder="Название" minlength="1" maxlength="30" required>
-                        <input class="popup__entry-field popup__entry-field_item-image-url" type="url" name="item-image-url" placeholder="Ссылка на картинку"required>
+                        <label class="popup__form-field">
+                            <input class="popup__entry-field popup__entry-field_item-name" id="entry-field-item-name" type="text" name="item-name" placeholder="Название" minlength="1" maxlength="30" required>
+                            <span class="popup__entry-field-error" id="entry-field-item-name-error"></span>
+                        </label>
+                        <label class="popup__form-field">
+                            <input class="popup__entry-field popup__entry-field_item-image-url" id="entry-field-item-image-url" type="url" name="item-image-url" placeholder="Ссылка на картинку"required>
+                            <span class="popup__entry-field-error" id="entry-field-item-image-url-error"></span>
+                        </label>
                         <button class="popup__submit-button" type="submit">Создать</button>
                     </fieldset>
                 </form>
