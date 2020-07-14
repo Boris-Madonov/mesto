@@ -139,21 +139,34 @@ initialCards.forEach(function(card) {           // рендер карточек
 
 const formElement = content.querySelector('.popup__container')
 const inputElement = formElement.querySelector('.popup__entry-field')
-const formError = formElement.querySelector(`#${inputElement.id}-error`);
 
 
 const showInputError = (formElement, inputElement, errorMessage) =>{
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add('popup__entry-field_type_error');
-    formError.textContent = errorMessage;
-    formError.classList.add('popup__entry-field-error_active');
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add('popup__entry-field-error_active');
 };
 
 const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove('popup__entry-field_type_error');
-    formError.classList.remove('popup__entry-field-error_active');
-    formError.textContent = '';
+    errorElement.classList.remove('popup__entry-field-error_active');
+    errorElement.textContent = '';
+};
+
+const hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+    })
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add('popup__submit-button_disabled');
+    } else {
+        buttonElement.classList.remove('popup__submit-button_disabled');
+    }
 };
 
 const isValid = (formElement, inputElement) => {
@@ -166,9 +179,12 @@ const isValid = (formElement, inputElement) => {
 
 const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll('.popup__entry-field'));
+    const buttonElement = formElement.querySelector('.popup__submit-button');
+    toggleButtonState(inputList, buttonElement);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-            isValid(formElement, inputElement)
+            isValid(formElement, inputElement);
+            toggleButtonState(inputList, buttonElement);
         });
     });
 };
