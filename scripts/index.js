@@ -56,6 +56,7 @@ const inputCardImage = popupNewCard.querySelector('.popup__entry-field_item-imag
 
 function openPopup(popup) {                 // функция для открытия попапа
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', handleEscape)
 }
 
 function closePopup(popup) {                 // функция для закрытия попапа
@@ -82,38 +83,31 @@ buttonOpenPopupNewCard.addEventListener('click', function () {  // открыв�
 
 formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки
 
-// код для закрытия попапа по нажатию 'Esape'
-
-/*function closePopupEscape (evt) {
-    evt.key === 'Escape'
-    const openedPopup = content.querySelector('.popup_opened');
-    console.log(openedPopup);
+function handleEscape(evt) {                                                // функция закрытия попапа по нажатию кнопки 'Escape'
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened')
+        if (openedPopup) {
+            closePopup(openedPopup);
+        }
+    }
 }
-
-if (evt.target.classList.contains('popup') {
-
-}
-
-content.addEventListener('click', closePopupEscape); */
-
-// конец кода
 
 function closePopupProfileOverlay(evt) {                                    // функции закрытия попапов при нажатии по оверлею
     if(evt.target.classList.contains('popup')) {
         closePopup(popupProfile);
-    }
+    };
 }
 
 function closePopupNewCardOverlay(evt) {
     if(evt.target.classList.contains('popup')) {
         closePopup(popupNewCard);
-    }
+    };
 }
 
 function closePopupImageOverlay(evt) {
     if(evt.target.classList.contains('popup')) {
         closePopup(popupImage);
-    }
+    };
 }
 
 popupProfile.addEventListener('mousedown', closePopupProfileOverlay);       // слушатели нажатия по оверлэю для закрытия попапов
@@ -122,7 +116,7 @@ popupNewCard.addEventListener('mousedown', closePopupNewCardOverlay);
 
 popupImage.addEventListener('mousedown', closePopupImageOverlay);
 
-buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));    // закрываем секцию popup при нажатии кнопки
+buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));    // закрываем секцию popup при нажатии кнопки крестика
 
 buttonClosePopupNewCard.addEventListener('click', () => closePopup(popupNewCard));
 
