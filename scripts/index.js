@@ -65,11 +65,12 @@ const config = {
 
 function openPopup(popup) {                                 // функция для открытия попапа
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', handleEscape)      // слушатель для возможности закрытия попапа по нажатию 'Escape'
+    document.addEventListener('keydown', handleEscape);     // слушатель для возможности закрытия попапа по нажатию 'Escape'
 }
 
 function closePopup(popup) {                                // функция для закрытия попапа
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', handleEscape);  // удаление слушателя для возможности закрытия попапа по нажатию 'Escape'
 }
 
 function handlerSubmitFormProfile(evt) {                                    // функция для переноса нового текста, при внесении изменений в текстовые поля в попапа
