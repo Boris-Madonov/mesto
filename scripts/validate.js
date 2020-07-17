@@ -18,11 +18,13 @@ const hasInvalidInput = (inputList) => {                                        
     })
 };
 
-const toggleButtonState = (config, inputList, buttonElement) => {                           // функция переключения активности кнопки 'submit'
+const toggleButtonState = (config, inputList, buttonElement) => {                           // функция переключения активности кнопки 'submit'  
     if (hasInvalidInput(inputList)) {                                               // условие если поле невалидное - кнопка должна быть не активной
         buttonElement.classList.add(config.inactiveButtonClass);
+        buttonElement.setAttribute('disabled', 'disabled');
     } else {                                                                        // если нет не валидных полей - то кнопка должна быть активной
         buttonElement.classList.remove(config.inactiveButtonClass);
+        buttonElement.removeAttribute('disabled', 'disabled');
     }
 };
 
@@ -37,7 +39,6 @@ const isValid = (config, formSelector, inputElement) => {                       
 const setEventListeners = (config, formSelector) => {                                       // слушатель по форме
     const inputList = Array.from(formSelector.querySelectorAll(config.inputElement));       // список (массив) всех полей в форме
     const buttonElement = formSelector.querySelector(config.submitButtonSelector);          // кнопка 'submit'
-    toggleButtonState(config, inputList, buttonElement);                                           // вызываем функцию переключения состояния кнопки 'submit' чтобы при открытии формы кнопка была неактивна
     inputList.forEach((inputElement) => {                                                   // для каждого поля списка запускаем слушатель по нажатию кнопки, тем самым проверяем валидность полей
         inputElement.addEventListener('input', () => {
             isValid(config, formSelector, inputElement);
