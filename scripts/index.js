@@ -62,6 +62,9 @@ buttonOpenPopupProfile.addEventListener('click', function () {              // �
 buttonOpenPopupNewCard.addEventListener('click', function () {              // открываем секцию popup при нажатии кнопки
     openPopup(popupNewCard);
     formPopupNewCard.reset();                                               // сброс текста в полях ввода
+    const buttonSubmit = popupNewCard.querySelector('.popup__submit-button');   // кнопка 'submit' в модальном окне Новая карточка
+    buttonSubmit.setAttribute('disabled', 'disabled');                          // при открытии модального окна всегда присваивать атрибут disabled
+    buttonSubmit.classList.add('popup__submit-button_disabled');                // при открытии модального окна всегда присваивать класс для неактивной кнопки 
 })
 
 formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки

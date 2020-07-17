@@ -24,7 +24,7 @@ const toggleButtonState = (config, inputList, buttonElement) => {               
         buttonElement.setAttribute('disabled', 'disabled');
     } else {                                                                        // если нет не валидных полей - то кнопка должна быть активной
         buttonElement.classList.remove(config.inactiveButtonClass);
-        buttonElement.removeAttribute('disabled', 'disabled');
+        buttonElement.removeAttribute('disabled');
     }
 };
 
