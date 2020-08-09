@@ -69,7 +69,15 @@ export class FormValidator {
         this._setEventListeners();                                                              // вызываем приватный метод слушателей по форме
     };
 
-    resetForm() {
+    resetForm() {                                                                               // публичный метод для сброса ошибок валидации
+        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));  // список (массив) всех полей в форме 
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);      // кнопка 'submit'
 
+        inputList.forEach((inputElement) => {                                                   // для каждого поля в форме запускаем приватный метод по скрытию ошибок валидации
+            this._hideInputError(inputElement)
+        });
+
+        buttonElement.classList.remove(this._inactiveButtonClass);                              // удаление класса неактивной кнопки
+        buttonElement.removeAttribute('disabled');                                              // удаление атрибута disabled у кнопки
     }
 }

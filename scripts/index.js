@@ -32,6 +32,12 @@ const config = {
     errorClass: 'popup__entry-field-error_active'
 };
 
+const formPopupProfileValidator = new FormValidator(config, formPopupProfile);
+const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);
+
+formPopupProfileValidator.enableValidation();
+formPopupNewCardValidator.enableValidation();
+
 function handlerSubmitFormProfile(evt) {                                    // функция для переноса нового текста, при внесении изменений в текстовые поля в попапа
     evt.preventDefault();                                                   // отменяем стандартную отправку формы, теперь можем определить свою логику отправки формы
     profileName.textContent = inputProfileName.value;                       // вставляем в текстовые поля измененный текст в секции popup
@@ -43,11 +49,13 @@ buttonOpenPopupProfile.addEventListener('click', function () {              // �
     openPopup(popupProfile);
     inputProfileName.value = profileName.textContent;                       // при открытии секции popup в поля ввода переносится текущий текст
     inputProfileDescription.value = profileDescription.textContent;
+    formPopupProfileValidator.resetForm();                                  // вызываем метод для сброса ошибок валидации
 })
 
 buttonOpenPopupNewCard.addEventListener('click', function () {              // открываем секцию popup при нажатии кнопки
     openPopup(popupNewCard);
     formPopupNewCard.reset();                                               // сброс текста в полях ввода
+    formPopupNewCardValidator.resetForm();                                  // вызываем метод для сброса ошибок валидации
     const buttonSubmit = popupNewCard.querySelector('.popup__submit-button');   // кнопка 'submit' в модальном окне Новая карточка
     buttonSubmit.setAttribute('disabled', 'disabled');                          // при открытии модального окна всегда присваивать атрибут disabled
     buttonSubmit.classList.add('popup__submit-button_disabled');                // при открытии модального окна всегда присваивать класс для неактивной кнопки 
@@ -78,9 +86,3 @@ formPopupNewCard.addEventListener('submit', handlerSubmitFormNewCard);      // �
 initialCards.forEach((item) => {                                            // рендер базовых карточек с помощью класса Card
     addCard(item);
 });
-
-const formPopupProfileValidator = new FormValidator(config, formPopupProfile);
-formPopupProfileValidator.enableValidation();
-
-const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);
-formPopupNewCardValidator.enableValidation();
