@@ -29,7 +29,7 @@ const toggleButtonState = (config, inputList, buttonElement) => {               
 };
 
 const isValid = (config, formSelector, inputElement) => {                                   // функция показа / скрытия ошибки валидации
-    if (!inputElement.validity.valid) {                                             // условие если поле формы не валидно то запускаем функцию показа ошибки 
+    if (!inputElement.validity.valid) {                                                     // условие если поле формы не валидно то запускаем функцию показа ошибки 
         showInputError(config, formSelector, inputElement, inputElement.validationMessage);
     } else {                                                                        // если поле валидно - то запускаем функцию скрытия ошибки
         hideInputError(config, formSelector, inputElement);

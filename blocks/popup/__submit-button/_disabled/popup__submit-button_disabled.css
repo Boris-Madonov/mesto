@@ -3,7 +3,7 @@
     border-color: #000000;
     color: #000000;
     background-color: #ffffff;
-    transition: opacity 1s ease-out;
+    transition: opacity .6s ease;
 }
 
 .popup__submit-button:hover {
