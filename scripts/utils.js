@@ -1,3 +1,5 @@
+// объявляем переменные
+
 const content = document.querySelector('.content'); // контент
 
 const popupProfile = content.querySelector('.popup__edit-profile'); // попап с редактированием данных профиля
@@ -54,7 +56,7 @@ function closePopupImageOverlay(evt) {
     };
 }
 
-popupProfile.addEventListener('mousedown', closePopupProfileOverlay);       // слушатели нажатия по оверлэю для закрытия попапов
+popupProfile.addEventListener('mousedown', closePopupProfileOverlay);       // слушатели нажатия по оверлею для закрытия попапов
 
 popupNewCard.addEventListener('mousedown', closePopupNewCardOverlay);
 
