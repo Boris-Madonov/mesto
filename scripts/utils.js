@@ -41,19 +41,19 @@ function openPopupImage(cardImage, cardName) {                          // фу�
 function closePopupProfileOverlay(evt) {                                    // функции закрытия попапов при нажатии по оверлею
     if(evt.target.classList.contains('popup')) {
         closePopup(popupProfile);
-    };
+    }
 }
 
 function closePopupNewCardOverlay(evt) {
     if(evt.target.classList.contains('popup')) {
         closePopup(popupNewCard);
-    };
+    }
 }
 
 function closePopupImageOverlay(evt) {
     if(evt.target.classList.contains('popup')) {
         closePopup(popupImage);
-    };
+    }
 }
 
 popupProfile.addEventListener('mousedown', closePopupProfileOverlay);       // слушатели нажатия по оверлею для закрытия попапов

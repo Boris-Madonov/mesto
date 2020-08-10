@@ -16,6 +16,7 @@ const profileDescription = content.querySelector('.profile__text-description'); 
 
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
+const buttonSubmitPopupNewCard = popupNewCard.querySelector('.popup__submit-button'); // кнопка 'submit' в модальном окне Новая карточка
 
 const cardList = content.querySelector('.elements__list'); // список карточек
 const inputCardName = popupNewCard.querySelector('.popup__entry-field_item-name'); // поле ввода названия карточки
@@ -56,9 +57,8 @@ buttonOpenPopupNewCard.addEventListener('click', function () {              // �
     openPopup(popupNewCard);
     formPopupNewCard.reset();                                               // сброс текста в полях ввода
     formPopupNewCardValidator.resetForm();                                  // вызываем метод для сброса ошибок валидации
-    const buttonSubmit = popupNewCard.querySelector('.popup__submit-button');   // кнопка 'submit' в модальном окне Новая карточка
-    buttonSubmit.setAttribute('disabled', 'disabled');                          // при открытии модального окна всегда присваивать атрибут disabled
-    buttonSubmit.classList.add('popup__submit-button_disabled');                // при открытии модального окна всегда присваивать класс для неактивной кнопки 
+    buttonSubmitPopupNewCard.setAttribute('disabled', 'disabled');          // при открытии модального окна всегда присваивать атрибут disabled
+    buttonSubmitPopupNewCard.classList.add('popup__submit-button_disabled');// при открытии модального окна всегда присваивать класс для неактивной кнопки 
 })
 
 formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки
