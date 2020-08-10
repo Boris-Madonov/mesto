@@ -50,13 +50,15 @@ buttonOpenPopupProfile.addEventListener('click', function () {              // �
     openPopup(popupProfile);
     inputProfileName.value = profileName.textContent;                       // при открытии секции popup в поля ввода переносится текущий текст
     inputProfileDescription.value = profileDescription.textContent;
-    formPopupProfileValidator.resetForm();                                  // вызываем метод для сброса ошибок валидации
+    formPopupProfileValidator.resetInputValidation();                       // вызываем метод для сброса ошибок валидации полей формы
+    formPopupProfileValidator.resetButtonValidation();                      // вызываем метод для сброса ошибок валидации кнопки 'submit'
 })
 
 buttonOpenPopupNewCard.addEventListener('click', function () {              // открываем секцию popup при нажатии кнопки
     openPopup(popupNewCard);
     formPopupNewCard.reset();                                               // сброс текста в полях ввода
-    formPopupNewCardValidator.resetForm();                                  // вызываем метод для сброса ошибок валидации
+    formPopupNewCardValidator.resetInputValidation();                       // вызываем метод для сброса ошибок валидации полей формы
+    formPopupNewCardValidator.resetButtonValidation();                      // вызываем метод для сброса ошибок валидации кнопки 'submit'
     buttonSubmitPopupNewCard.setAttribute('disabled', 'disabled');          // при открытии модального окна всегда присваивать атрибут disabled
     buttonSubmitPopupNewCard.classList.add('popup__submit-button_disabled');// при открытии модального окна всегда присваивать класс для неактивной кнопки 
 })

@@ -44,8 +44,7 @@ export class FormValidator {
             buttonElement.classList.add(this._inactiveButtonClass);
             buttonElement.setAttribute('disabled', 'disabled');
         } else {                                                                                // если нет не валидных полей - то кнопка должна быть активной
-            buttonElement.classList.remove(this._inactiveButtonClass);
-            buttonElement.removeAttribute('disabled');
+            this.resetButtonValidation();
         }
     };
 
@@ -69,14 +68,17 @@ export class FormValidator {
         this._setEventListeners();                                                              // вызываем приватный метод слушателей по форме
     };
 
-    resetForm() {                                                                               // публичный метод для сброса ошибок валидации
+    resetInputValidation() {                                                                    // публичный метод для сброса ошибок валидации в полях формы
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));  // список (массив) всех полей в форме 
-        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);      // кнопка 'submit'
 
         inputList.forEach((inputElement) => {                                                   // для каждого поля в форме запускаем приватный метод по скрытию ошибок валидации
             this._hideInputError(inputElement)
         });
+    }
 
+    resetButtonValidation() {                                                                   // публичный метод сброса ошибок валидации кнопки 'submit'
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);      // кнопка 'submit'
+        
         buttonElement.classList.remove(this._inactiveButtonClass);                              // удаление класса неактивной кнопки
         buttonElement.removeAttribute('disabled');                                              // удаление атрибута disabled у кнопки
     }
