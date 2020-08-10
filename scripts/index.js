@@ -59,8 +59,7 @@ buttonOpenPopupNewCard.addEventListener('click', function () {              // �
     formPopupNewCard.reset();                                               // сброс текста в полях ввода
     formPopupNewCardValidator.resetInputValidation();                       // вызываем метод для сброса ошибок валидации полей формы
     formPopupNewCardValidator.resetButtonValidation();                      // вызываем метод для сброса ошибок валидации кнопки 'submit'
-    buttonSubmitPopupNewCard.setAttribute('disabled', 'disabled');          // при открытии модального окна всегда присваивать атрибут disabled
-    buttonSubmitPopupNewCard.classList.add('popup__submit-button_disabled');// при открытии модального окна всегда присваивать класс для неактивной кнопки 
+    formPopupNewCardValidator.inactiveButton();                             // кнопка 'submit' должна быть всегда неактивной при открытии модального окна
 })
 
 formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки

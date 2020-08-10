@@ -39,10 +39,9 @@ export class FormValidator {
         }
     };
 
-    _toggleButtonState(inputList, buttonElement) {                                              // приватный метод переключения активности кнопки 'submit'  
+    _toggleButtonState(inputList) {                                                             // приватный метод переключения активности кнопки 'submit'  
         if (this._hasInvalidInput(inputList)) {                                                 // условие если поле невалидное - кнопка должна быть не активной
-            buttonElement.classList.add(this._inactiveButtonClass);
-            buttonElement.setAttribute('disabled', 'disabled');
+            this.inactiveButton();
         } else {                                                                                // если нет не валидных полей - то кнопка должна быть активной
             this.resetButtonValidation();
         }
@@ -50,12 +49,11 @@ export class FormValidator {
 
     _setEventListeners() {                                                                      // приватный метод слушателей по форме
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));  // список (массив) всех полей в форме
-        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);      // кнопка 'submit'
         
         inputList.forEach((inputElement) => {                                                   // для каждого поля списка запускаем слушатель по нажатию кнопки, тем самым проверяем валидность полей
             inputElement.addEventListener('input', () => {
                 this._isValid(inputElement);
-                this._toggleButtonState(inputList, buttonElement);                              // вызываем функцию переключения состояния кнопки 'submit' для ее включения в случае валидности всех полей
+                this._toggleButtonState(inputList);                                             // вызываем функцию переключения состояния кнопки 'submit' для ее включения в случае валидности всех полей
             });
         });
     };
@@ -81,5 +79,12 @@ export class FormValidator {
         
         buttonElement.classList.remove(this._inactiveButtonClass);                              // удаление класса неактивной кнопки
         buttonElement.removeAttribute('disabled');                                              // удаление атрибута disabled у кнопки
+    }
+
+    inactiveButton() {                                                                          // публичный метод неактивной кнопки 'submit'
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);      // кнопка 'submit'
+    
+        buttonElement.classList.add(this._inactiveButtonClass);                                 // добавляем кнопке класс для неактивного состояния
+        buttonElement.setAttribute('disabled', 'disabled');                                     // добавляем кнопке атрибут disabled
     }
 }
