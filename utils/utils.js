@@ -1,14 +1,10 @@
 // объявляем переменные
 
-const content = document.querySelector('.content'); // контент
 
-const popupProfile = content.querySelector('.popup__edit-profile'); // попап с редактированием данных профиля
-const popupNewCard = content.querySelector('.popup__new-item'); // попап с добавлением новой карточки
-const popupImage = content.querySelector('.popup__image') // попап с открытие картинки
 
-const buttonClosePopupProfile = popupProfile.querySelector('.popup__close-button'); // кнопка закрытия попапа профайла
-const buttonClosePopupNewCard = popupNewCard.querySelector('.popup__close-button'); // кнопка закрытия попапа новая карточка
-const buttonClosePopupImage = popupImage.querySelector('.popup__close-button'); // кнопка закрытия попапа картинки
+
+
+/*
 
 function openPopup(popup) {                                 // функция для открытия попапа
     popup.classList.add('popup_opened');
@@ -29,6 +25,8 @@ function handleEscape(evt) {                                                // �
     }
 }
 
+*/
+
 function openPopupImage(cardImage, cardName) {                          // функция открытия попапа с картинкой по нажатию на нее
     const image = document.querySelector('.popup__item-image');
     const name = document.querySelector('.popup__item-name');
@@ -37,6 +35,8 @@ function openPopupImage(cardImage, cardName) {                          // фу�
     name.textContent = cardName;
     openPopup(popupImage);
 }
+
+/*
 
 function closePopupProfileOverlay(evt) {                                    // функции закрытия попапов при нажатии по оверлею
     if(evt.target.classList.contains('popup')) {
@@ -68,5 +68,4 @@ buttonClosePopupNewCard.addEventListener('click', () => closePopup(popupNewCard)
 
 buttonClosePopupImage.addEventListener('click', () => closePopup(popupImage));
 
-
-export { openPopup, closePopup, openPopupImage, content, popupProfile, popupNewCard };
+*/

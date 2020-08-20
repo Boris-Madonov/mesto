@@ -1,7 +1,7 @@
-import { initialCards } from './initialCards.js';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { openPopup, closePopup, content, popupProfile, popupNewCard } from './utils.js';
+import { initialCards } from '../utils/constants.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { openPopup, closePopup, content, popupProfile, popupNewCard } from '../utils/utils.js';
 
 // объявляем переменные
 
@@ -16,7 +16,6 @@ const profileDescription = content.querySelector('.profile__text-description'); 
 
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
-const buttonSubmitPopupNewCard = popupNewCard.querySelector('.popup__submit-button'); // кнопка 'submit' в модальном окне Новая карточка
 
 const cardList = content.querySelector('.elements__list'); // список карточек
 const inputCardName = popupNewCard.querySelector('.popup__entry-field_item-name'); // поле ввода названия карточки

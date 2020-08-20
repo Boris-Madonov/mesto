@@ -1,4 +1,4 @@
-import { openPopupImage } from './utils.js';
+import { openPopupImage } from '../utils/utils.js';
 
 export class Card {                                     // класс для создания карточек с фотографиями и подписями
     constructor(data, cardSelector) {                   // передаем к класс объект data с необходимыми параметрами и селектор выбора карточки
