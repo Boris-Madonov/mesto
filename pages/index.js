@@ -4,9 +4,7 @@ import {
     popupNewCard, 
     popupImage, 
     formPopupProfile, 
-    formPopupNewCard, 
-    inputProfileName, 
-    inputProfileDescription, 
+    formPopupNewCard,
     profileName, 
     profileDescription,
     buttonOpenPopupProfile,
@@ -20,27 +18,35 @@ import { config } from '../utils/config.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
+import { UserInfo } from '../components/UserInfo.js';
 
-const formPopupProfileValidator = new FormValidator(config, formPopupProfile);
-const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);
+const formPopupProfileValidator = new FormValidator(config, formPopupProfile);  // экземпляр класса для валидации форм в модальном окне "Profile"
+const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);  // экземпляр класса для валидации форм в модальном окне "NewCard"
 
-formPopupProfileValidator.enableValidation();
+formPopupProfileValidator.enableValidation();                                   // вызываем публичного метода включения валидации
 formPopupNewCardValidator.enableValidation();
 
+const openPopupProfile = new UserInfo({                                         // экземпляр класса "UserInfo" для модального окна "Profile"
+    data: {                                                                     // передаем объект "data" и селектор модального окна "Profile"
+        userName: profileName,
+        userInfo: profileDescription
+    }
+}, popupProfile);
+
+buttonOpenPopupProfile.addEventListener('click', function () {              // функция открытия модального окна "Profile" при нажатии кнопки
+    openPopupProfile.open();                                                // вызываем публичный метод открытия модального окна
+    openPopupProfile.getUserInfo();                                         // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
+    formPopupProfileValidator.resetInputValidation();                       // вызываем публичный метод для сброса ошибок валидации полей формы
+    formPopupProfileValidator.resetButtonValidation();                      // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
+})
+
 function handlerSubmitFormProfile(evt) {                                    // функция для переноса нового текста, при внесении изменений в текстовые поля в попапа
-    evt.preventDefault();                                                   // отменяем стандартную отправку формы, теперь можем определить свою логику отправки формы
-    profileName.textContent = inputProfileName.value;                       // вставляем в текстовые поля измененный текст в секции popup
-    profileDescription.textContent = inputProfileDescription.value;
-    closePopup(popupProfile);                                               // закрываем попап
+    evt.preventDefault();                                                   // отменяем стандартную отправку формы
+    openPopupProfile.setUserInfo();                                         // вызываем публичный метод добавления новых текстовых значений в разметку
+    openPopupProfile.close();                                               // вызываем публичный метод для закрытия модального окна
 }
 
-buttonOpenPopupProfile.addEventListener('click', function () {              // открываем секцию popup при нажатии кнопки
-    openPopup(popupProfile);
-    inputProfileName.value = profileName.textContent;                       // при открытии секции popup в поля ввода переносится текущий текст
-    inputProfileDescription.value = profileDescription.textContent;
-    formPopupProfileValidator.resetInputValidation();                       // вызываем метод для сброса ошибок валидации полей формы
-    formPopupProfileValidator.resetButtonValidation();                      // вызываем метод для сброса ошибок валидации кнопки 'submit'
-})
+formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки "submit"
 
 buttonOpenPopupNewCard.addEventListener('click', function () {              // открываем секцию popup при нажатии кнопки
     openPopup(popupNewCard);
@@ -49,7 +55,8 @@ buttonOpenPopupNewCard.addEventListener('click', function () {              // �
     formPopupNewCardValidator.inactiveButton();                             // кнопка 'submit' должна быть всегда неактивной при открытии модального окна
 })
 
-formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки
+
+
 
 const openPopupImage = new PopupWithImage(popupImage);
 

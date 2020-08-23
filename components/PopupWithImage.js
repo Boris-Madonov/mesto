@@ -5,7 +5,7 @@ export class PopupWithImage extends Popup {                                     
         super(popupSelector);
     }
 
-    open(cardImage, cardName) {                                                     // функция открытия попапа с картинкой по нажатию на нее
+    open(cardImage, cardName) {                                                     // публичный метод открытия попапа с картинкой по нажатию на нее
         const image = this._popupSelector.querySelector('.popup__item-image');
         const name = this._popupSelector.querySelector('.popup__item-name');
 

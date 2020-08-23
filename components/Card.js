@@ -47,7 +47,7 @@ export class Card {                                     // класс для с�
         });
 
         this._cardElement.querySelector('.element__image').addEventListener('click', () => {            // слушатель нажатия на картинку карточки
-            this._handleCardClick(this._link, this._name);                                              // обработчик нажатия на карточку
+            this._handleCardClick(this._link, this._name);                                              // вызов приватного метода обработчика нажатия на карточку
         });
     }
 }
