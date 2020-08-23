@@ -1,36 +1,25 @@
-import { initialCards } from '../utils/constants.js';
+import { 
+    initialCards, 
+    popupProfile, 
+    popupNewCard, 
+    popupImage, 
+    formPopupProfile, 
+    formPopupNewCard, 
+    inputProfileName, 
+    inputProfileDescription, 
+    profileName, 
+    profileDescription,
+    buttonOpenPopupProfile,
+    buttonOpenPopupNewCard,
+    cardList,
+    inputCardName,
+    inputCardImage,
+    cardTemplateSelector 
+} from '../utils/constants.js';
+import { config } from '../utils/config.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { openPopup, closePopup, content, popupProfile, popupNewCard } from '../utils/utils.js';
-
-// объявляем переменные
-
-const formPopupProfile = popupProfile.querySelector('.popup__container'); // форма в HTML в профайле
-const formPopupNewCard = popupNewCard.querySelector('.popup__container'); // форма в HTML в новой карточке
-
-const inputProfileName = formPopupProfile.querySelector('.popup__entry-field_account-name'); // поле ввода имени в профайле
-const inputProfileDescription = formPopupProfile.querySelector('.popup__entry-field_account-description'); // поле ввода описания в профайле
-
-const profileName = content.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
-const profileDescription = content.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
-
-const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
-const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
-
-const cardList = content.querySelector('.elements__list'); // список карточек
-const inputCardName = popupNewCard.querySelector('.popup__entry-field_item-name'); // поле ввода названия карточки
-const inputCardImage = popupNewCard.querySelector('.popup__entry-field_item-image-url'); // поле ввода ссылки для карточки
-
-const cardTemplateSelector = '.element-template'; // шаблон для создания карточки
-
-const config = {
-    formSelector: '.popup__container',
-    inputSelector: '.popup__entry-field',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__submit-button_disabled',
-    inputElementErrorClass: 'popup__entry-field_type_error',
-    errorClass: 'popup__entry-field-error_active'
-};
+import { PopupWithImage } from '../components/PopupWithImage.js';
 
 const formPopupProfileValidator = new FormValidator(config, formPopupProfile);
 const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);
@@ -62,8 +51,14 @@ buttonOpenPopupNewCard.addEventListener('click', function () {              // �
 
 formPopupProfile.addEventListener('submit', handlerSubmitFormProfile);      // заменяем текст и закрываем секцию popup при нажатии кнопки
 
+const openPopupImage = new PopupWithImage(popupImage);
+
+function handelCardClick(link, name) {
+    openPopupImage.open(link,name);
+}
+
 function addCard(item) {                                                    // функция добавления новой карточки с помощью класса Card
-    const card = new Card(item, cardTemplateSelector);
+    const card = new Card(item, cardTemplateSelector, handelCardClick);
     const cardElement = card.generateCard();
 
     cardList.prepend(cardElement);

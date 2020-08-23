@@ -27,6 +27,8 @@ function handleEscape(evt) {                                                // �
 
 */
 
+/*
+
 function openPopupImage(cardImage, cardName) {                          // функция открытия попапа с картинкой по нажатию на нее
     const image = document.querySelector('.popup__item-image');
     const name = document.querySelector('.popup__item-name');
@@ -35,6 +37,8 @@ function openPopupImage(cardImage, cardName) {                          // фу�
     name.textContent = cardName;
     openPopup(popupImage);
 }
+
+*/
 
 /*
 
