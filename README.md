@@ -1,7 +1,7 @@
 # Проект 4: Место
 
 **Ссылка на проект**
-https://boris-madonov.github.io/mesto/index.html
+https://boris-madonov.github.io/mesto/src/index.html
 
 **Описание проекта**
 
