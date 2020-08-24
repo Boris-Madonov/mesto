@@ -7,7 +7,6 @@ export class Popup {
         this._popupSelector.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);                         // слушатель для возможности закрытия попапа по нажатию 'Escape'
         this._popupSelector.addEventListener('mousedown', this._handelOverlayClose);
-        this.setEventListeners();
     }
 
     close() {                                                                               // публичный метод закрытия модального окна
@@ -29,7 +28,7 @@ export class Popup {
     }
 
     setEventListeners() {                                                                   // публичный метод слушателя закрытия модального окна по нажатию кнопки крестика
-        this._buttonClosePopup = this._popupSelector.querySelector('.popup__close-button').addEventListener('click', () => this.close());
+        this._popupSelector.querySelector('.popup__close-button').addEventListener('click', () => this.close());
         // находим кнопку крестика и добавляем к ней слушатель по нажатию
     }
 }

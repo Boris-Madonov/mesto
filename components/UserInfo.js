@@ -1,20 +1,18 @@
-import { Popup } from './Popup.js';
-import { inputProfileName, inputProfileDescription, } from '../utils/constants.js'
+import { profileName, profileDescription } from '../utils/constants.js'
 
-export class UserInfo extends Popup {                                   // класс на основе класса Popup
-    constructor({ data }, popupSelector) {
-        super(popupSelector);
+export class UserInfo {
+    constructor({ data }) {
         this._userName = data.userName;
         this._userInfo = data.userInfo;
     }
 
     getUserInfo() {                                                     // публичный метод заполнения полей ввода из разметки при открытии модального окна "Profile"
-        inputProfileName.value = this._userName.textContent;
-        inputProfileDescription.value = this._userInfo.textContent;
+        this._userName.value = profileName.textContent;
+        this._userInfo.value = profileDescription.textContent;
     }
 
     setUserInfo() {                                                     // публичный метод добавления новых значений в разметку
-        this._userName.textContent = inputProfileName.value;
-        this._userInfo.textContent = inputProfileDescription.value;
+        profileName.textContent = this._userName;
+        profileDescription.textContent = this._userInfo;
     }
 }

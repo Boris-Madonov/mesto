@@ -43,9 +43,7 @@ const profileDescription = content.querySelector('.profile__text-description'); 
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
 
-const cardList = content.querySelector('.elements__list'); // список карточек
-const inputCardName = popupNewCard.querySelector('.popup__entry-field_item-name'); // поле ввода названия карточки
-const inputCardImage = popupNewCard.querySelector('.popup__entry-field_item-image-url'); // поле ввода ссылки для карточки
+const cardListSection = '.elements__list'; // секция с карточками
 
 const cardTemplateSelector = '.element-template'; // шаблон для создания карточки
 
@@ -62,8 +60,6 @@ export {
     profileDescription,
     buttonOpenPopupProfile,
     buttonOpenPopupNewCard,
-    cardList,
-    inputCardName,
-    inputCardImage,
-    cardTemplateSelector
+    cardTemplateSelector,
+    cardListSection
 };
