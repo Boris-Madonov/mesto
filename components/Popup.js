@@ -38,7 +38,7 @@ export class Popup {
         // находим кнопку крестика и добавляем к ней слушатель по нажатию
     }
 
-    _removeEventListeners() {
+    _removeEventListeners() {                                                               // приватный метод удаления слушателей модального окна
         this._popupSelector.querySelector('.popup__close-button').removeEventListener('click', this._handlerCloseButton);
     }
 }
