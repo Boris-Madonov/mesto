@@ -46,7 +46,7 @@ const profile = new PopupWithForm({                                         // �
 
 buttonOpenPopupProfile.addEventListener('click', function () {              // функция открытия модального окна "Profile" при нажатии кнопки
     profile.open();                                                         // вызываем публичный метод открытия модального окна
-    profile.setEventListeners();                                            // вызываем публичный метод слушателей
+    // profile.setEventListeners();                                            // вызываем публичный метод слушателей
     userInfo.getUserInfo();                                                 // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
     formPopupProfileValidator.resetInputValidation();                       // вызываем публичный метод для сброса ошибок валидации полей формы
     formPopupProfileValidator.resetButtonValidation();                      // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
@@ -54,15 +54,15 @@ buttonOpenPopupProfile.addEventListener('click', function () {              // �
 
 const openPopupImage = new PopupWithImage(popupImage);                      // экземпляр класса для открытия модального окна "CardImage"
 
-function handelCardClick(link, name) {                                      // функция открытия модального окна "CardImage"
+function handlerCardClick(link, name) {                                      // функция открытия модального окна "CardImage"
     openPopupImage.open(link, name);                                        // вызываем публичный метод открытия модального окна и передаем данные для "CardImage"
-    openPopupImage.setEventListeners();                                     // вызываем публичный метод слушателей
+    // openPopupImage.setEventListeners();                                     // вызываем публичный метод слушателей
 }
 
 const cardList = new Section({                                              // экземпляр класса для добавления элементов в разметку
     items: initialCards,
     renderer: (item) => {
-        const card = new Card(item, cardTemplateSelector, handelCardClick); // экземпляр класса для создания карточки
+        const card = new Card(item, cardTemplateSelector, handlerCardClick); // экземпляр класса для создания карточки
         const cardElement = card.generateCard();                            // вызываем публичный метод для создания карточки
 
         cardList.addItem(cardElement);                                      // вызываем публичный метод для добавления карточки в разметку
@@ -75,7 +75,7 @@ cardList.renderItems();                                                     // �
 const newCard = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
     popupSelector: popupNewCard, 
     handlerFormSubmit: (data) => {
-        const card = new Card(data, cardTemplateSelector, handelCardClick);
+        const card = new Card(data, cardTemplateSelector, handlerCardClick);
         const cardElement = card.generateCard();
 
         cardList.addItem(cardElement);
@@ -84,7 +84,7 @@ const newCard = new PopupWithForm({                                         // �
 
 buttonOpenPopupNewCard.addEventListener('click', function () {              // функция открытия модального окна "NewCard" при нажатии кнопки
     newCard.open();                                                         // вызываем публичный метод открытия модального окна
-    newCard.setEventListeners();                                            // вызываем публичный метод слушателей
+    // newCard.setEventListeners();                                            // вызываем публичный метод слушателей
     formPopupNewCardValidator.resetInputValidation();                       // вызываем публичный метод для сброса ошибок валидации полей формы
     formPopupNewCardValidator.inactiveButton();                             // вызываем публичный метод для деактивации кнопки 'submit'
 })

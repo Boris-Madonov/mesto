@@ -20,12 +20,19 @@ export class PopupWithForm extends Popup {                          // клас�
         this._popupSelector.querySelector('.popup__container').reset();                                 // вызываем метод сброса значений полей формы
     }
 
+    _handlerSubmitButton = (evt) => {                                                                   // приватный метод обработки нажатия кнопки 'submit'
+        evt.preventDefault();
+        this._handlerFormSubmit(this._getInputValues());
+        this.close();
+    }
+
     setEventListeners() {
         super.setEventListeners();
-        this._popupSelector.querySelector('.popup__container').addEventListener('submit', (evt) => {    // слушатель по кнопки 'submit' формы с вызовом функции обработчика
-            evt.preventDefault();
-            this._handlerFormSubmit(this._getInputValues());
-            this.close();
-        });
+        this._popupSelector.querySelector('.popup__container').addEventListener('submit', this._handlerSubmitButton);    // слушатель по кнопки 'submit' формы с вызовом функции обработчика
+    }
+
+    _removeEventListeners() {
+        super._removeEventListeners();
+        this._popupSelector.querySelector('.popup__container').removeEventListener('submit', this._handlerSubmitButton);
     }
 }
