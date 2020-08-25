@@ -27,7 +27,7 @@ export class Popup {
 
     close() {                                                                               // публичный метод закрытия модального окна
         this._popupSelector.classList.remove('popup_opened');
-        document.removeEventListener('keydown', this._handleEscClose);                      // удаление слушателя для возможности закрытия попапа по нажатию 'Escape'
+        document.removeEventListener('keydown', this._handlerEscClose);                      // удаление слушателя для возможности закрытия попапа по нажатию 'Escape'
         this._popupSelector.removeEventListener('mousedown', this._handlerOverlayClose);
     }
 
