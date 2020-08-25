@@ -18,6 +18,7 @@ export class PopupWithForm extends Popup {                          // клас�
     close() {
         super.close();
         this._popupSelector.querySelector('.popup__container').reset();                                 // вызываем метод сброса значений полей формы
+        this._removeEventListeners();
     }
 
     _handlerSubmitButton = (evt) => {                                                                   // приватный метод обработки нажатия кнопки 'submit'
@@ -32,7 +33,6 @@ export class PopupWithForm extends Popup {                          // клас�
     }
 
     _removeEventListeners() {
-        super._removeEventListeners();
         this._popupSelector.querySelector('.popup__container').removeEventListener('submit', this._handlerSubmitButton);
     }
 }
