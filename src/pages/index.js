@@ -5,6 +5,8 @@ import {
     popupImage, 
     formPopupProfile, 
     formPopupNewCard,
+    profileName,
+    profileDescription,
     inputProfileName, 
     inputProfileDescription,
     buttonOpenPopupProfile,
@@ -29,23 +31,26 @@ formPopupNewCardValidator.enableValidation();
 
 const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile"
     data: {
-        userName: inputProfileName,
-        userInfo: inputProfileDescription
+        name: profileName,
+        about: profileDescription
     } 
 });
+
+function addUserInfo() {                                                    // функция для заполнения полей ввода формы модального окна "Profile" при открытии модального окна
+    inputProfileName.value = userInfo.getUserInfo().name;                   // подставляем значение поля с помощью вызова публичного метода
+    inputProfileDescription.value = userInfo.getUserInfo().about;
+}
 
 const profile = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
     popupSelector: popupProfile, 
     handlerFormSubmit: (data) => {
-        const  newUserInfo = new UserInfo({ data });                            // экземпляр класса для обновления значений полей формы модального окна "Profile"
-
-         newUserInfo.setUserInfo();                                             // вызов публичного метода добавления новых значений полей формы в разметку
+        userInfo.setUserInfo(data);                                         // вызываем публичный метод для внесения данных в разметку
     }
 });
 
 buttonOpenPopupProfile.addEventListener('click', function () {              // функция открытия модального окна "Profile" при нажатии кнопки
     profile.open();                                                         // вызываем публичный метод открытия модального окна
-    userInfo.getUserInfo();                                                 // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
+    addUserInfo();                                                 // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
     profile.setEventListeners();                                            // вызываем публичный метод добавления слушателей
     formPopupProfileValidator.resetInputValidation();                       // вызываем публичный метод для сброса ошибок валидации полей формы
     formPopupProfileValidator.resetButtonValidation();                      // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
