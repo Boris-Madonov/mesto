@@ -1,5 +1,4 @@
 import { 
-    initialCards, 
     popupProfile, 
     popupNewCard, 
     popupImage, 
@@ -21,6 +20,7 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Section } from '../components/Section.js';
+import { Api } from '../components/Api.js';
 // import './index.css';
 
 const formPopupProfileValidator = new FormValidator(config, formPopupProfile);  // экземпляр класса для валидации форм в модальном окне "Profile"
@@ -75,14 +75,24 @@ function addCard(data) {                                                    // �
 }
 
 const cardList = new Section({                                              // экземпляр класса для добавления элементов в разметку
-    items: initialCards,
     renderer: (data) => {
         cardList.addItem(addCard(data));                                    // вызываем публичный метод для добавления карточки в разметку
     }
 },
 cardListSection);
 
-cardList.renderItems();                                                     // вызываем публичный метод для добавления карточек в разметку
+// проба кода с Api
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
+    headers: {
+        authorization: 'e85ea904-e4e6-4bf9-b3e5-7844a7dfa51b'
+    }
+});
+
+api.getInitialCards()
+    .then((res) => {
+        cardList.renderItems(res);                                          // вызываем публичный метод для добавления карточек в разметку
+    });
 
 const newCard = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
     popupSelector: popupNewCard, 
