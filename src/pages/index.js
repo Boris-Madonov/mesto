@@ -6,6 +6,7 @@ import {
     formPopupNewCard,
     profileName,
     profileDescription,
+    profileAvatar,
     inputProfileName, 
     inputProfileDescription,
     buttonOpenPopupProfile,
@@ -28,6 +29,25 @@ const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);  
 
 formPopupProfileValidator.enableValidation();                                   // вызываем публичный метод включения валидации
 formPopupNewCardValidator.enableValidation();
+
+// проба кода с Api
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
+    headers: {
+        authorization: 'e85ea904-e4e6-4bf9-b3e5-7844a7dfa51b'
+    }
+});
+
+api.getUserInfo()
+    .then((res) => {
+        profileName.textContent = res.name;
+        profileDescription.textContent = res.about;
+        profileAvatar.src = res.avatar
+    })
+
+// console.log(userData['name']);
+
+
 
 const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile"
     data: {
@@ -80,14 +100,6 @@ const cardList = new Section({                                              // �
     }
 },
 cardListSection);
-
-// проба кода с Api
-const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
-    headers: {
-        authorization: 'e85ea904-e4e6-4bf9-b3e5-7844a7dfa51b'
-    }
-});
 
 api.getInitialCards()
     .then((res) => {

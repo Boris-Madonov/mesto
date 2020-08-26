@@ -39,6 +39,7 @@ const inputProfileDescription = formPopupProfile.querySelector('.popup__entry-fi
 
 const profileName = content.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
 const profileDescription = content.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
+const profileAvatar = content.querySelector('.profile__avatar-image');
 
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
@@ -58,6 +59,7 @@ export {
     inputProfileDescription, 
     profileName, 
     profileDescription,
+    profileAvatar,
     buttonOpenPopupProfile,
     buttonOpenPopupNewCard,
     cardTemplateSelector,
