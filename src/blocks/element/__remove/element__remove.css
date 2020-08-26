@@ -5,12 +5,12 @@
     background-image: url(../../../images/trash.svg);
     border: none;
     cursor: pointer;
-    transition: opacity 1s ease-out;
     width: 18px;
     height: 19.3px;
     margin: 0;
     padding: 0;
     background-color: rgba(0, 0, 0, 0);
+    transition: opacity .5s ease;
 }
 
 .element__remove:hover {

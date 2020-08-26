@@ -8,7 +8,7 @@
     border: none;
     cursor: pointer;
     background-size: contain;
-    transition: opacity 1s ease-out;
+    transition: opacity .5s ease;
 }
 
 .profile__add-button:hover {

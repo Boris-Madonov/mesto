@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/logo/logo-M.png">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 <body>
@@ -17,7 +18,10 @@
 
             <section class="profile">
                 <div class="profile__info">
-                    <img class="profile__avatar" src="./images/Avatar.png" alt="аватар профиля">
+                    <div class="profile__avatar">
+                        <img class="profile__avatar-image" src="./images/Avatar.png" alt="аватар профиля">
+                        <button class="profile__avatar-edit" type="button"></button>
+                    </div>
                     <div class="profile__text">
                         <p class="profile__text-name">Жак-Ив Кусто</p>
                         <button class="profile__text-edit" type="button"></button>
@@ -37,7 +41,10 @@
                 <li class="element">
                     <img class="element__image" src="#" alt="">
                     <p class="element__description"></p>
-                    <button class="element__like" type="button"></button>
+                    <div class="element__likes">
+                        <button class="element__like" type="button"></button>
+                        <p class="element__like-counter">0</p>
+                    </div>
                     <button class="element__remove" type="button"></button>                    
                 </li>
             </template>
@@ -54,6 +61,20 @@
                         <label class="popup__form-field">
                             <input class="popup__entry-field popup__entry-field_account-description" id="entry-field-account-description" type="text" name="about" placeholder="Введите описание" minlength="2" maxlength="200" required>
                             <span class="popup__entry-field-error" id="entry-field-account-description-error"></span>
+                        </label>
+                        <button class="popup__submit-button" type="submit">Сохранить</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <section class="popup popup__update-avatar">
+                <form class="popup__container" name="update-avatar-form" action="#" method="GET" novalidate>
+                    <button class="popup__close-button" type="button"></button>
+                    <p class="popup__container-name">Обновить аватар</p>
+                    <fieldset class="popup__container-form">
+                        <label class="popup__form-field">
+                            <input class="popup__entry-field popup__entry-field_avatar-image-url" id="entry-field_avatar-image-url" type="url" name="link" placeholder="Ссылка на картинку" required>
+                            <span class="popup__entry-field-error" id="entry-field-account-name-error"></span>
                         </label>
                         <button class="popup__submit-button" type="submit">Сохранить</button>
                     </fieldset>
@@ -78,6 +99,16 @@
                 </form>
             </section>
 
+            <section class="popup popup__delete-item">
+                <form class="popup__container" name="delete-item-form" action="#" method="GET" novalidate>
+                    <button class="popup__close-button" type="button"></button>
+                    <p class="popup__container-name">Вы уверены?</p>
+                    <fieldset class="popup__container-form">
+                        <button class="popup__submit-button" type="submit">Да</button>
+                    </fieldset>
+                </form>
+            </section>
+
             <section class="popup popup__image">
                 <div class="popup__item">
                     <button class="popup__close-button" type="button"></button>        
@@ -93,5 +124,6 @@
         </footer>
 
     </div>
+    <script type="module" src="./pages/index.js"></script>
 </body>
 </html>

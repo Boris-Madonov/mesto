@@ -1,9 +1,11 @@
 @import url(./__info/profile__info.css);
 @import url(./__avatar/profile__avatar.css);
+@import url(./__avatar-image/profile__avatar-image.css);
+@import url(./__avatar-edit/profile__avatar-edit.css);
 @import url(./__text/profile__text.css);
-@import url(./__name/profile__text-name.css);
-@import url(./__description/profile__text-description.css);
-@import url(./__edit/profile__text-edit.css);
+@import url(./__text-name/profile__text-name.css);
+@import url(./__text-description/profile__text-description.css);
+@import url(./__text-edit/profile__text-edit.css);
 @import url(./__add-button/profile__add-button.css);
 
 .profile {
