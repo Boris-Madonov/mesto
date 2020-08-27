@@ -1,9 +1,11 @@
 import { 
     popupProfile, 
     popupNewCard, 
-    popupImage, 
+    popupImage,
+    popupEditAvatar,
     formPopupProfile, 
     formPopupNewCard,
+    formPopupEditAvatar,
     profileName,
     profileDescription,
     profileAvatar,
@@ -11,6 +13,7 @@ import {
     inputProfileDescription,
     buttonOpenPopupProfile,
     buttonOpenPopupNewCard,
+    buttonOpenPopupEditAvatar,
     cardTemplateSelector,
     cardListSection
 } from '../utils/constants.js';
@@ -26,9 +29,11 @@ import { Api } from '../components/Api.js';
 
 const formPopupProfileValidator = new FormValidator(config, formPopupProfile);  // экземпляр класса для валидации форм в модальном окне "Profile"
 const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);  // экземпляр класса для валидации форм в модальном окне "NewCard"
+const formPopupEditAvatarValidation = new FormValidator(config, formPopupEditAvatar);
 
 formPopupProfileValidator.enableValidation();                                   // вызываем публичный метод включения валидации
 formPopupNewCardValidator.enableValidation();
+formPopupEditAvatarValidation.enableValidation();
 
 // проба кода с Api
 const api = new Api({
@@ -47,6 +52,20 @@ api.getUserInfo()
 
 // console.log(userData['name']);
 
+const editAvatar = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
+    popupSelector: popupEditAvatar, 
+    handlerFormSubmit: (data) => {
+        userInfo.setUserInfo(data);                                         // вызываем публичный метод для внесения данных в разметку
+    }
+});
+
+editAvatar.setEventListeners();
+
+buttonOpenPopupEditAvatar.addEventListener('click', function() {
+    editAvatar.open();
+    formPopupEditAvatarValidation.resetInputValidation();                   // вызываем публичный метод для сброса ошибок валидации полей формы
+    formPopupEditAvatarValidation.resetButtonValidation();                  // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
+})
 
 
 const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile"

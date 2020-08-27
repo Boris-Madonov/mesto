@@ -1,11 +1,11 @@
 .popup__form-field {
     width: 358px;
     height: 63px;
-    margin: 108px auto 0;
+    margin: 0 auto;
 }
 
-.popup__form-field:last-of-type {
-    margin: 0 auto 0;
+.popup__form-field:first-of-type {
+    margin: 9px auto 0;
 }
 
 @media screen and (max-width: 619px) {
@@ -13,7 +13,6 @@
         width: 200px;
         font-size: 12px;
         line-height: 15px;
-        margin: 82px auto 0;
         height: 52px;
     }
 }
