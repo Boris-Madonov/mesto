@@ -68,7 +68,7 @@ export class FormValidator {
 
     resetInputValidation() {                                                                    // публичный метод для сброса ошибок валидации в полях формы
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));  // список (массив) всех полей в форме 
-
+        
         inputList.forEach((inputElement) => {                                                   // для каждого поля в форме запускаем приватный метод по скрытию ошибок валидации
             this._hideInputError(inputElement)
         });

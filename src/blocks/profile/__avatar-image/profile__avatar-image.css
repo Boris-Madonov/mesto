@@ -3,7 +3,7 @@
     height: 120px;
     box-sizing: border-box;
     overflow: hidden;
-    object-fit: contain;
+    object-fit: cover;
     object-position: top;
     border-radius: 50%;
 }

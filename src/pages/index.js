@@ -3,6 +3,7 @@ import {
     popupNewCard, 
     popupImage,
     popupEditAvatar,
+    popupDeleteCard,
     formPopupProfile, 
     formPopupNewCard,
     formPopupEditAvatar,
@@ -11,6 +12,7 @@ import {
     profileAvatar,
     inputProfileName, 
     inputProfileDescription,
+    inputProfileAvatarUrl,
     buttonOpenPopupProfile,
     buttonOpenPopupNewCard,
     buttonOpenPopupEditAvatar,
@@ -25,53 +27,39 @@ import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Section } from '../components/Section.js';
 import { Api } from '../components/Api.js';
+import { PopupDeleteCard } from '../components/PopupDeleteCard.js';
 // import './index.css';
 
 const formPopupProfileValidator = new FormValidator(config, formPopupProfile);  // экземпляр класса для валидации форм в модальном окне "Profile"
 const formPopupNewCardValidator = new FormValidator(config, formPopupNewCard);  // экземпляр класса для валидации форм в модальном окне "NewCard"
-const formPopupEditAvatarValidation = new FormValidator(config, formPopupEditAvatar);
+const formPopupEditAvatarValidation = new FormValidator(config, formPopupEditAvatar);   // экземпляр класса для валидации форм в модальном окне "EditAvatar"
 
 formPopupProfileValidator.enableValidation();                                   // вызываем публичный метод включения валидации
 formPopupNewCardValidator.enableValidation();
 formPopupEditAvatarValidation.enableValidation();
 
-// проба кода с Api
-const api = new Api({
+const api = new Api({                                                       // экземпляр класса для общения с сервером
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-14',
     headers: {
-        authorization: 'e85ea904-e4e6-4bf9-b3e5-7844a7dfa51b'
+        authorization: 'e85ea904-e4e6-4bf9-b3e5-7844a7dfa51b',
+        'Content-Type': 'application/json'
     }
 });
 
-api.getUserInfo()
+
+api.getUserInfo()                                                           // вызываем публичный метод
     .then((res) => {
         profileName.textContent = res.name;
         profileDescription.textContent = res.about;
         profileAvatar.src = res.avatar
     })
 
-// console.log(userData['name']);
 
-const editAvatar = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
-    popupSelector: popupEditAvatar, 
-    handlerFormSubmit: (data) => {
-        userInfo.setUserInfo(data);                                         // вызываем публичный метод для внесения данных в разметку
-    }
-});
-
-editAvatar.setEventListeners();
-
-buttonOpenPopupEditAvatar.addEventListener('click', function() {
-    editAvatar.open();
-    formPopupEditAvatarValidation.resetInputValidation();                   // вызываем публичный метод для сброса ошибок валидации полей формы
-    formPopupEditAvatarValidation.resetButtonValidation();                  // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
-})
-
-
-const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile"
+const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile" и "EditAvatar"
     data: {
         name: profileName,
-        about: profileDescription
+        about: profileDescription,
+        avatar: profileAvatar
     } 
 });
 
@@ -80,12 +68,17 @@ function addUserInfo() {                                                    // �
 
     inputProfileName.value = userData.name;                                 // подставляем в поля значения из переменной
     inputProfileDescription.value = userData.about;
+    inputProfileAvatarUrl.value = userData.avatar
 }
 
-const profile = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
+const profile = new PopupWithForm({                                         // экземпляр класса для создания модального окна профайла
     popupSelector: popupProfile, 
     handlerFormSubmit: (data) => {
-        userInfo.setUserInfo(data);                                         // вызываем публичный метод для внесения данных в разметку
+        api.sendUserInfo(data)                                              // вызываем публичный метод для отправки данных на сервер и получения ответа с новыми данными
+            .then((res) => {
+                profileName.textContent = res.name;
+                profileDescription.textContent = res.about;
+            })
     }
 });
 
@@ -98,6 +91,32 @@ buttonOpenPopupProfile.addEventListener('click', function () {              // �
     formPopupProfileValidator.resetButtonValidation();                      // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
 })
 
+const avatar = new PopupWithForm({                                          // экземпляр класса для создания модального окна редактора аватара
+    popupSelector: popupEditAvatar, 
+    handlerFormSubmit: (data) => {
+        api.sendUserAvatar(data)                                            // вызываем публичный метод для отправки данных на сервер и получения ответа с новыми данными
+            .then((res) => {
+                profileAvatar.src = res.avatar;
+            })
+    }
+});
+
+avatar.setEventListeners();                                                 // вызываем публичный метод добавления слушателей
+
+buttonOpenPopupEditAvatar.addEventListener('click', function () {           // функция открытия модального окна "EditAvatar" при нажатии кнопки
+    avatar.open();                                                          // вызываем публичный метод открытия модального окна
+    addUserInfo();                                                          // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
+    formPopupEditAvatarValidation.resetInputValidation();                   // вызываем публичный метод для сброса ошибок валидации полей формы
+    formPopupEditAvatarValidation.resetButtonValidation();                  // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
+})
+
+
+const deleteCardPopup = new PopupDeleteCard(popupDeleteCard);               // экземпляр класса для модального окна "DeleteCard"
+
+deleteCardPopup.setEventListeners();                                        // вызываем публичный метод добавления слушателей
+
+deleteCardPopup.setSubmitHandler(() => deleteCard());
+
 const openPopupImage = new PopupWithImage(popupImage);                      // экземпляр класса для открытия модального окна "CardImage"
 
 openPopupImage.setEventListeners();                                         // вызываем публичный метод добавления слушателей
@@ -106,7 +125,15 @@ function handlerCardClick(link, name) {                                     // �
     openPopupImage.open(link, name);                                        // вызываем публичный метод открытия модального окна и передаем данные для "CardImage"
 }
 
+function handlerLikeClick() {
+    api.likeCard(data)
+        .then((res) => {
+
+        })
+}
+
 function addCard(data) {                                                    // функция для создания карточки
+    console.log(data);
     const card = new Card(data, cardTemplateSelector, handlerCardClick);    // экземпляр класса для создания карточки
     const cardElement = card.generateCard();                                // вызываем публичный метод для создания карточки
     
@@ -128,7 +155,10 @@ api.getInitialCards()
 const newCard = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
     popupSelector: popupNewCard, 
     handlerFormSubmit: (data) => {
-        cardList.addItem(addCard(data));
+        api.sendCard(data)
+            .then((res) => {
+                cardList.addItem(addCard(res));
+            })
     }
 });
 
