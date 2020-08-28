@@ -1,11 +1,15 @@
-export class Card {                                     // класс для создания карточек с фотографиями и подписями
-    constructor(data, cardSelector, handlerCardClick, handlerLikeClick, handlerDeleteIconClick) {  // передаем к класс объект data с необходимыми параметрами, селектор выбора карточки, обработчик нажатия по карточке
+export class Card {
+    constructor({ data, myID, handlerCardClick, handlerLikeClick, handlerDeleteIconClick }, cardSelector) {
         this._name = data.name;
         this._link = data.link;
         this._likes = data.likes;
-        this._id = data._id;
-        this._cardSelector = cardSelector;
+        this._cardId = data._id;
+        this._ownerId = data.owner._id;
+        this._userId = myID;
         this._handlerCardClick = handlerCardClick;
+        this._handlerLikeClick = handlerLikeClick;
+        this._handlerDeleteIconClick = handlerDeleteIconClick;
+        this._cardSelector = cardSelector;
     }
 
     _getTemplate() {                                    // приватный метод создания карточки на основе шаблона из переданного селектора
@@ -23,7 +27,15 @@ export class Card {                                     // класс для с�
         this._cardName = this._cardElement.querySelector('.element__description');
         this._cardImage = this._cardElement.querySelector('.element__image');
         this._cardLikes = this._cardElement.querySelector('.element__like-counter');
+        this._cardDelete = this._cardElement.querySelector('.element__remove')
         this._setEventListeners();                                                      // вызов приватного метода со слушателями карточки
+
+
+        if (this._ownerId === this._userId) {                                           // проверка на владельца карточки
+            this._cardDelete.style.display = 'block';
+        } else {
+            this._cardDelete.style.display = 'none';
+        }
 
         this._cardName.textContent = this._name;
         this._cardImage.src = this._link;
@@ -33,23 +45,36 @@ export class Card {                                     // класс для с�
         return this._cardElement;                                                       // возвращаем готовую карточку
     }
 
-    _toggleLike() {                                                                                         // приватный метод переключения кнопки лайка карточки
-        this._cardElement.querySelector('.element__like').classList.toggle('element__like_liked');
+    _getLikeCount() {                                                                   // приватный метод счетчика лайков
+        return this._likes.length;
     }
 
-    _handlerDeleteIconClick() {                                                                               // приватный метод обработчика кнопки удаления карточки
+    isLiked() {                                                                         // публичный метод проверки лайка карточки
+        return !!this._likes.find(like => like._id === this._userId);
+    }
+
+    updateLikeCount(newLikes) {                                                         // публичный метод обновления счетчика лайков
+        this._likes = newLikes;
+        this._cardElement.querySelector('.element__like-counter').textContent = this._getLikeCount();
+        if(this.isLiked()) {
+            this._cardElement.querySelector('.element__like').classList.add('element__like_liked');
+        } else {
+            this._cardElement.querySelector('.element__like').classList.remove('element__like_liked');
+        }
+    }
+
+    removeCard() {                                                                      // публичный метод удаления карточки
         this._cardElement.remove();
         this._cardElement = null;
     }
 
     _setEventListeners() {                                                                              // приватный метод слушателей карточки
         this._cardElement.querySelector('.element__like').addEventListener('click', () => {             // слушатель нажатия кнопки лайка карточки
-            this._handlerLikeClick(this._id);                                                                    // вызов приватного метода обработчика кнопки лайка карточки
-            this._toggleLike();
+            this._handlerLikeClick(this._cardId);                                                       // вызов приватного метода обработчика кнопки лайка карточки
         });
 
         this._cardElement.querySelector('.element__remove').addEventListener('click', () => {           // слушатель нажатия на кнопку удаления карточки
-            this._handlerDeleteIconClick();                                                                  // вызов приватного метода обработчика кнопки удаления карточки
+            this._handlerDeleteIconClick();                                                             // вызов приватного метода обработчика кнопки удаления карточки
         });
 
         this._cardElement.querySelector('.element__image').addEventListener('click', () => {            // слушатель нажатия на картинку карточки

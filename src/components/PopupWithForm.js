@@ -23,7 +23,6 @@ export class PopupWithForm extends Popup {                          // клас�
     _handlerSubmitButton = (evt) => {                                                                   // приватный метод обработки нажатия кнопки 'submit'
         evt.preventDefault();
         this._handlerFormSubmit(this._getInputValues());
-        this.close();
     }
 
     setEventListeners() {
