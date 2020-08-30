@@ -57,7 +57,7 @@ const api = new Api({                                                       // �
 });
 
 const renderLoading = loading => {                                          // функция изменения надписи кнопки во время отправки данных на сервер
-    const openedPopup = document.querySelector('.popup_opened');
+    const openedPopup = content.querySelector('.popup_opened');
     const submitButton = openedPopup.querySelector('.popup__submit-button');
 
     submitButton.textContent = loading ? 'Сохранение...' : 'Сохранить';
@@ -100,8 +100,7 @@ const profile = new PopupWithForm({                                         // �
         renderLoading(true);
         api.sendUserInfo(data)                                              // вызываем публичный метод для отправки данных на сервер и получения ответа с новыми данными
             .then((res) => {
-                profileName.textContent = res.name;
-                profileDescription.textContent = res.about;
+                userInfo.setUserInfo(res);
             })
             .then(() => profile.close())
             .catch((err) => {
@@ -126,7 +125,7 @@ const avatar = new PopupWithForm({                                          // �
         renderLoading(true);
         api.sendUserAvatar(data)                                            // вызываем публичный метод для отправки данных на сервер и получения ответа с новыми данными
             .then((res) => {
-                profileAvatar.src = res.avatar;
+                userInfo.setUserInfo(res);
             })
             .then(() => avatar.close())
             .catch((err) => {
