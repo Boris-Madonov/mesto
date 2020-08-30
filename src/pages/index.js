@@ -6,7 +6,7 @@ import { config } from '../utils/config.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { UserInfo } from '../components/UserInfo.js';
+import { profileName, profileDescription, profileAvatar, UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Section } from '../components/Section.js';
 import { Api } from '../components/Api.js';
@@ -29,10 +29,6 @@ const formPopupEditAvatar = popupEditAvatar.querySelector('.popup__container') /
 const inputProfileName = formPopupProfile.querySelector('.popup__entry-field_account-name'); // поле ввода имени в профайле
 const inputProfileDescription = formPopupProfile.querySelector('.popup__entry-field_account-description'); // поле ввода описания в профайле
 const inputProfileAvatarUrl = formPopupEditAvatar.querySelector('.popup__entry-field_avatar-image-url') // поле ввода ссылки на картинку аватара
-
-const profileName = content.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
-const profileDescription = content.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
-const profileAvatar = content.querySelector('.profile__avatar-image'); // ссылка в HTML на картинку в аватаре профайла
 
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
@@ -63,10 +59,16 @@ const renderLoading = loading => {                                          // �
     submitButton.textContent = loading ? 'Сохранение...' : 'Сохранить';
 }
 
+const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile" и "EditAvatar"
+    data: {
+        name: profileName,
+        about: profileDescription,
+        avatar: profileAvatar
+    } 
+});
+
 const main = ([userData, cards]) => {                                       // функция для отображения полученных данных пользователя и полученных карточек
-    profileName.textContent = userData.name;
-    profileDescription.textContent = userData.about;
-    profileAvatar.src = userData.avatar;
+    userInfo.setUserInfo(userData)
     myID = userData._id;
     cardList.renderItems(cards);                                            // вызываем публичный метод для рендера карточек на странице
 }
@@ -80,17 +82,9 @@ Promise.all([                                                               // �
         console.log(err);
     });
 
-const userInfo = new UserInfo({                                             // экземпляр класса для определения значений полей формы модального окна "Profile" и "EditAvatar"
-    data: {
-        name: profileName,
-        about: profileDescription,
-        avatar: profileAvatar
-    } 
-});
-
 function addUserInfo() {                                                    // функция для заполнения полей ввода формы модального окна "Profile" при открытии модального окна
     const userData = userInfo.getUserInfo();                                // записываем объект со данными пользователя в переменную
-
+    
     inputProfileName.value = userData.name;                                 // подставляем в поля значения из переменной
     inputProfileDescription.value = userData.about;
     inputProfileAvatarUrl.value = userData.avatar
