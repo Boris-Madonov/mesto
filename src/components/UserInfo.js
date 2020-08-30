@@ -18,6 +18,9 @@ export class UserInfo {
     setUserInfo(data) {                                                 // публичный метод добавления новых значений в разметку
         this._userName.textContent = data.name;
         this._userAbout.textContent = data.about;
+    }
+
+    setUserAvatar(data) {
         this._userAvatar.src = data.avatar
     }
 }

@@ -72,7 +72,8 @@ const userInfo = new UserInfo({                                             // �
 });
 
 const main = ([userData, cards]) => {                                       // функция для отображения полученных данных пользователя и полученных карточек
-    userInfo.setUserInfo(userData)
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
     myID = userData._id;
     cardList.renderItems(cards);                                            // вызываем публичный метод для рендера карточек на странице
 }
@@ -125,7 +126,7 @@ const avatar = new PopupWithForm({                                          // �
         renderLoading(true);
         api.sendUserAvatar(data)                                            // вызываем публичный метод для отправки данных на сервер и получения ответа с новыми данными
             .then((res) => {
-                userInfo.setUserInfo(res);
+                userInfo.setUserAvatar(res);
             })
             .then(() => avatar.close())
             .catch((err) => {
