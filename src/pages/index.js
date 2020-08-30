@@ -88,11 +88,16 @@ Promise.all([                                                               // �
     });
 
 function addUserInfo() {                                                    // функция для заполнения полей ввода формы модального окна "Profile" при открытии модального окна
-    const userData = userInfo.getUserInfo();                                // записываем объект со данными пользователя в переменную
+    const getUserData = userInfo.getUserInfo();
     
-    inputProfileName.value = userData.name;                                 // подставляем в поля значения из переменной
-    inputProfileDescription.value = userData.about;
-    inputProfileAvatarUrl.value = userData.avatar
+    inputProfileName.value = getUserData.name;                                 // подставляем в поля значения из переменной
+    inputProfileDescription.value = getUserData.about;
+}
+
+function addUserAvatar() {                                                    // функция для заполнения полей ввода формы модального окна "Profile" при открытии модального окна
+    const getUserData = userInfo.getUserInfo();
+    
+    inputProfileAvatarUrl.value = getUserData.avatar;
 }
 
 const profile = new PopupWithForm({                                         // экземпляр класса для создания модального окна профайла
@@ -140,7 +145,7 @@ avatar.setEventListeners();                                                 // �
 buttonOpenPopupEditAvatar.addEventListener('click', function () {           // функция открытия модального окна "EditAvatar" при нажатии кнопки
     avatar.open();                                                          // вызываем публичный метод открытия модального окна
     renderLoading(false);
-    addUserInfo();                                                          // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
+    addUserAvatar();                                                        // вызываем публичный метод добавления текущих текстовых значений в поля ввода формы
     formPopupEditAvatarValidation.resetInputValidation();                   // вызываем публичный метод для сброса ошибок валидации полей формы
     formPopupEditAvatarValidation.resetButtonValidation();                  // вызываем публичный метод для сброса ошибок валидации кнопки 'submit'
 })
