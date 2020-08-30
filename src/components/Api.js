@@ -11,16 +11,11 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
-    _error = (err) => {
-        console.log(err);
-    }
-
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
             .then(this._response)
-            .catch(this._error);
     }
 
     getUserInfo() {
@@ -28,7 +23,6 @@ export class Api {
             headers: this._headers
         })
         .then(this._response)
-        .catch(this._error);
     }
 
     sendUserInfo(data) {
@@ -41,7 +35,6 @@ export class Api {
             })
         })
         .then(this._response)
-        .catch(this._error);
     }
 
     sendUserAvatar(data) {
@@ -53,7 +46,6 @@ export class Api {
             })
         })
         .then(this._response)
-        .catch(this._error);
     }
 
     sendCard(data) {
@@ -66,7 +58,6 @@ export class Api {
             })
         })
         .then(this._response)
-        .catch(this._error);
     }
 
     likeCard(id) {
@@ -75,7 +66,6 @@ export class Api {
             headers: this._headers 
         })
         .then(this._response)
-        .catch(this._error);
     }
 
     deleteLikeCard(id) {
@@ -84,7 +74,6 @@ export class Api {
             headers: this._headers 
         })
         .then(this._response)
-        .catch(this._error);
     }
 
     deleteCard(id) {
@@ -93,6 +82,5 @@ export class Api {
             headers: this._headers 
         })
         .then(this._response)
-        .catch(this._error);
     }
 }
