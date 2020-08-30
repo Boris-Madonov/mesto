@@ -1,8 +1,4 @@
-const profileName = document.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
-const profileDescription = document.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
-const profileAvatar = document.querySelector('.profile__avatar-image'); // ссылка в HTML на картинку в аватаре профайла
-
-class UserInfo {
+export class UserInfo {
     constructor({ data }) {
         this._userName = data.name;
         this._userAbout = data.about;
@@ -20,10 +16,8 @@ class UserInfo {
     }
 
     setUserInfo(data) {                                                 // публичный метод добавления новых значений в разметку
-        profileName.textContent = data.name;
-        profileDescription.textContent = data.about;
-        profileAvatar.src = data.avatar
+        this._userName.textContent = data.name;
+        this._userAbout.textContent = data.about;
+        this._userAvatar.src = data.avatar
     }
 }
-
-export { profileName, profileDescription, profileAvatar, UserInfo }

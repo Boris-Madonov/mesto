@@ -6,7 +6,7 @@ import { config } from '../utils/config.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { profileName, profileDescription, profileAvatar, UserInfo } from '../components/UserInfo.js';
+import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Section } from '../components/Section.js';
 import { Api } from '../components/Api.js';
@@ -25,6 +25,10 @@ const popupDeleteCard = content.querySelector('.popup__delete-item'); // поп�
 const formPopupProfile = popupProfile.querySelector('.popup__container'); // форма в HTML в профайле
 const formPopupNewCard = popupNewCard.querySelector('.popup__container'); // форма в HTML в новой карточке
 const formPopupEditAvatar = popupEditAvatar.querySelector('.popup__container') // форма в HTML в редакторе аватара
+
+const profileName = content.querySelector('.profile__text-name'); // текст в HTML в имени в профайле
+const profileDescription = content.querySelector('.profile__text-description'); // текст в HTML в описании в профайле
+const profileAvatar = content.querySelector('.profile__avatar-image'); // ссылка в HTML на картинку в аватаре профайла
 
 const inputProfileName = formPopupProfile.querySelector('.popup__entry-field_account-name'); // поле ввода имени в профайле
 const inputProfileDescription = formPopupProfile.querySelector('.popup__entry-field_account-description'); // поле ввода описания в профайле

@@ -42,6 +42,8 @@ export class Card {
         this._cardImage.alt = this._name;
         this._cardLikes.textContent = this._likes.length;
 
+        this._toggleLike();
+
         return this._cardElement;                                                       // возвращаем готовую карточку
     }
 
@@ -53,14 +55,18 @@ export class Card {
         return !!this._likes.some(like => like._id === this._userId);
     }
 
-    updateLikeCount(newLikes) {                                                         // публичный метод обновления счетчика лайков
-        this._likes = newLikes;
-        this._cardElement.querySelector('.element__like-counter').textContent = this._getLikeCount();
+    _toggleLike() {                                                                     // приватный метод отображения изменения лайка карточки
         if(this.isLiked()) {
             this._cardElement.querySelector('.element__like').classList.add('element__like_liked');
         } else {
             this._cardElement.querySelector('.element__like').classList.remove('element__like_liked');
         }
+    }
+
+    updateLikeCount(newLikes) {                                                         // публичный метод обновления счетчика лайков
+        this._likes = newLikes;
+        this._cardElement.querySelector('.element__like-counter').textContent = this._getLikeCount();
+        this._toggleLike();
     }
 
     removeCard() {                                                                      // публичный метод удаления карточки
