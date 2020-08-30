@@ -63,13 +63,19 @@ const renderLoading = loading => {                                          // �
     submitButton.textContent = loading ? 'Сохранение...' : 'Сохранить';
 }
 
-api.getUserInfo()                                                           // вызываем публичный метод
-    .then((res) => {
-        profileName.textContent = res.name;
-        profileDescription.textContent = res.about;
-        profileAvatar.src = res.avatar;
-        myID = res._id;
-    })
+const main = ([userData, cards]) => {                                       // функция для отображения полученных данных пользователя и полученных карточек
+    profileName.textContent = userData.name;
+    profileDescription.textContent = userData.about;
+    profileAvatar.src = userData.avatar;
+    myID = userData._id;
+    cardList.renderItems(cards);                                            // вызываем публичный метод для рендера карточек на странице
+}
+
+Promise.all([                                                               // единовременно получаем данные о пользователе и о карточках
+    api.getUserInfo(),
+    api.getInitialCards(),
+])
+    .then(main)
     .catch((err) => {
         console.log(err);
     });
@@ -198,11 +204,6 @@ const cardList = new Section({                                              // �
     }
 },
 cardListSection);
-
-api.getInitialCards()
-    .then((res) => {
-        cardList.renderItems(res);                                          // вызываем публичный метод для добавления карточек в разметку
-    });
 
 const newCard = new PopupWithForm({                                         // экземпляр класса для создания новой карточки
     popupSelector: popupNewCard, 

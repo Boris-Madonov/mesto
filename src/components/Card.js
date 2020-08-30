@@ -50,7 +50,7 @@ export class Card {
     }
 
     isLiked() {                                                                         // публичный метод проверки лайка карточки
-        return !!this._likes.find(like => like._id === this._userId);
+        return !!this._likes.some(like => like._id === this._userId);
     }
 
     updateLikeCount(newLikes) {                                                         // публичный метод обновления счетчика лайков
