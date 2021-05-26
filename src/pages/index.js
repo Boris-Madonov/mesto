@@ -11,7 +11,6 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Section } from '../components/Section.js';
 import { Api } from '../components/Api.js';
 import { PopupDeleteCard } from '../components/PopupDeleteCard.js';
-import './index.css';
 
 // объявляем переменные
 const content = document.querySelector('.content'); // контент
@@ -33,7 +32,7 @@ const profileAvatar = content.querySelector('.profile__avatar-image'); // ссы
 const inputProfileName = formPopupProfile.querySelector('.popup__entry-field_account-name'); // поле ввода имени в профайле
 const inputProfileDescription = formPopupProfile.querySelector('.popup__entry-field_account-description'); // поле ввода описания в профайле
 const inputProfileAvatarUrl = formPopupEditAvatar.querySelector('.popup__entry-field_avatar-image-url') // поле ввода ссылки на картинку аватара
-
+console.log(inputProfileAvatarUrl);
 const buttonOpenPopupProfile = content.querySelector('.profile__text-edit'); // кнопка открытия попапап профайл
 const buttonOpenPopupNewCard = content.querySelector('.profile__add-button'); // кнопка открытия попапа новая карточка
 const buttonOpenPopupEditAvatar = content.querySelector('.profile__avatar-edit'); // кнопка открытия попапа редактора аватара
